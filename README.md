@@ -1,36 +1,57 @@
-# PM Portfolio
+---
+title: PM Portfolio
+emoji: 📝
+colorFrom: yellow
+colorTo: red
+sdk: docker
+pinned: false
+---
 
-AI 产品经理求职网站。Stripe Press 编辑式风格。
+# PM Portfolio 个人站
 
-## 启动
+AI 产品经理个人作品集。HF Spaces 单容器 = Nginx + uvicorn + FastAPI + React 静态文件。RAG over 简历 + 案例 + demo，基于 MiniMax M3。
+
+## 本地开发
 
 ```bash
 pnpm install
 pnpm dev
+
+# 另一个终端
+cd backend
+python3 -m venv .venv && source .venv/bin/activate
+pip install -r requirements.txt
+uvicorn main:app --reload
 ```
 
-打开 http://localhost:5173
+## 数据准备
 
-## 你需要替换的内容
+```bash
+# 前端 data → JSON（供后端 ingest 用）
+source backend/.venv/bin/activate
+pip install demjson3
+python3 backend/scripts/convert_ts_to_json.py
+```
 
-全部在 `src/data/` 下：
+## 环境变量（HF Space Settings）
 
-- **profile.ts** — 姓名、邮箱、社交链接、能力标签、自我介绍
-- **works.ts** — 3 个案例（已写示例，按"背景→问题→过程→结果→复盘"结构替换）
-- **vibecoding.ts** — 2 个 demo（替换成你自己的真实项目）
+- `SUPABASE_URL` — Supabase 项目 URL
+- `SUPABASE_KEY` — Supabase anon key
+- `MINIMAX_API_KEY` — MiniMax API key
+- `MINIMAX_API_BASE` — 默认 `https://api.minimaxi.com`
+- `MINIMAX_CHAT_MODEL` — 默认 `MiniMax-M3`
+- `MINIMAX_EMBED_MODEL` — 默认 `emb-01`
+- `ADMIN_TOKEN` — 重索引用（与 GitHub Secret 一致）
 
-## 放上你的简历 PDF
+## 一次性 Supabase 设置
 
-把 PDF 放到 `public/resume.pdf`，然后在 `src/pages/Resume.tsx` 把下载按钮的链接从 `#` 改成 `/resume.pdf`。
+见 `docs/setup-supabase.md`
 
-## 部署
+## 触发重索引
 
-最简单：推到 GitHub → 用 Vercel 一键部署。
-免费、几分钟搞定、自带域名。
+```bash
+curl -X POST https://your-space.hf.space/api/admin/reindex \
+     -H "X-Admin-Token: $ADMIN_TOKEN"
+```
 
-## 设计说明
-
-- 字体：Fraunces（衬线大标题）+ Inter（正文）+ JetBrains Mono（标签）
-- 配色：奶油底 + 深墨字 + 一点朱砂红强调
-- 风格参考：Stripe Press、Linear Changelog
-- 动效：仅滚动渐入（CSS + IntersectionObserver）
+或 push 改 `src/data/**` 触发 GitHub Action。
