@@ -2,10 +2,10 @@ import { NavLink, Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 
 const links = [
-  { to: '/works', label: '作品集' },
+  { to: '/works', label: 'Works' },
   { to: '/vibecoding', label: 'Vibecoding' },
-  { to: '/resume', label: '简历' },
-  { to: '/about', label: '关于' },
+  { to: '/resume', label: 'Resume' },
+  { to: '/about', label: 'About' },
 ]
 
 export default function Navigation() {
@@ -44,6 +44,12 @@ export default function Navigation() {
               {l.label}
             </NavLink>
           ))}
+          <button
+            onClick={() => window.dispatchEvent(new CustomEvent('open-chat'))}
+            className="text-[0.92rem] tracking-wide text-muted hover:text-vermilion transition-colors"
+          >
+            跟我聊
+          </button>
         </nav>
       </div>
     </header>
