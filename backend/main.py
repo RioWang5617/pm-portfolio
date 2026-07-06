@@ -1,9 +1,9 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from backend.api import chat
 
 app = FastAPI(title="PM Portfolio API", version="0.1.0")
 
-# CORS - 开发时让 Vite (5173) 能调，HF Spaces 部署时同源不需要
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
@@ -14,6 +14,8 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+app.include_router(chat.router, prefix="/api")
 
 
 @app.get("/api/health")
