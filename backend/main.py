@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from backend.api import chat, admin
+from backend.config import settings
 
 app = FastAPI(title="PM Portfolio API", version="0.1.0")
 
@@ -21,4 +22,8 @@ app.include_router(admin.router, prefix="/api")
 
 @app.get("/api/health")
 async def health():
-    return {"status": "ok"}
+    return {
+        "status": "ok",
+        "chat_model": settings.minimax_chat_model,
+        "embed_model": settings.minimax_embed_model,
+    }
