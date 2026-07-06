@@ -1,0 +1,25 @@
+import { Routes, Route } from 'react-router-dom'
+import Layout from './components/Layout'
+import Home from './pages/Home'
+import Works from './pages/Works'
+import CaseStudy from './pages/CaseStudy'
+import Vibecoding from './pages/Vibecoding'
+import Demo from './pages/Demo'
+import Resume from './pages/Resume'
+import About from './pages/About'
+
+export default function App() {
+  return (
+    <Routes>
+      <Route element={<Layout />}>
+        <Route path="/" element={<Home />} />
+        <Route path="/works" element={<Works />} />
+        <Route path="/works/:slug" element={<CaseStudy />} />
+        <Route path="/vibecoding" element={<Vibecoding />} />
+        <Route path="/vibecoding/:slug" element={<Demo />} />
+        <Route path="/resume" element={<Resume />} />
+        <Route path="/about" element={<About />} />
+      </Route>
+    </Routes>
+  )
+}
