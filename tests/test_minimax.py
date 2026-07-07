@@ -5,11 +5,14 @@ from backend.lib.minimax import embed_texts
 
 @pytest.mark.asyncio
 async def test_embed_texts_returns_vectors():
-    """embed_texts 应该返回每个 text 对应的 embedding vector"""
+    """embed_texts 应该返回每个 text 对应的 embedding vector
+    
+    MiniMax API 返回格式: { vectors: [[float, ...], ...] }
+    """
     fake_response = {
-        "data": [
-            {"index": 0, "embedding": [0.1, 0.2, 0.3]},
-            {"index": 1, "embedding": [0.4, 0.5, 0.6]},
+        "vectors": [
+            [0.1, 0.2, 0.3],
+            [0.4, 0.5, 0.6],
         ]
     }
 
