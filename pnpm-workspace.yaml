@@ -1,3 +1,4 @@
 allowBuilds:
-  esbuild: set this to true or false
-storeDir: /Users/wty/Documents/个人/.pnpm-store/v11
+  esbuild: true
+onlyBuiltDependencies:
+  - esbuild
