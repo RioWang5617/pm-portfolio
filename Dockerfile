@@ -4,12 +4,13 @@ WORKDIR /app
 
 RUN corepack enable && corepack prepare pnpm@latest --activate
 
-# Allow esbuild postinstall scripts
-RUN echo "onlyBuiltDependencies:" > /tmp/pnpm-config.yaml && \
-    echo "  - esbuild" >> /tmp/pnpm-config.yaml
+# 在 .npmrc 设置 pnpm 允许 esbuild build script
+RUN echo "side-effects-cache=false" > .npmrc
 
-COPY package.json pnpm-lock.yaml .npmrc pnpm-workspace.yaml ./
-RUN pnpm install --frozen-lockfile --config.side-effects-cache=false
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml .npmrc ./
+# 预 approve esbuild（写入 settings 防止 ERR_PNPM_IGNORED_BUILDS）
+RUN pnpm config set side-effects-cache false --location project
+RUN pnpm install --frozen-lockfile
 
 COPY src ./src
 COPY tsconfig.json tsconfig.node.json vite.config.ts tailwind.config.js postcss.config.js index.html ./
