@@ -4,12 +4,12 @@ WORKDIR /app
 
 RUN corepack enable && corepack prepare pnpm@latest --activate
 
-# 在 .npmrc 设置 pnpm 允许 esbuild build script
-RUN echo "side-effects-cache=false" > .npmrc
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 
-COPY package.json pnpm-lock.yaml pnpm-workspace.yaml .npmrc ./
-# 预 approve esbuild（写入 settings 防止 ERR_PNPM_IGNORED_BUILDS）
-RUN pnpm config set side-effects-cache false --location project
+# pnpm 10+ 必须在 .npmrc 设置 onlyBuiltDependencies
+# 见 https://pnpm.io/settings
+RUN pnpm config set --location project onlyBuiltDependencies '["esbuild"]'
+
 RUN pnpm install --frozen-lockfile
 
 COPY src ./src
