@@ -8,9 +8,7 @@ export const resume = {
     tagline: '3 年 AI 后端与大模型应用开发经验，从 0 到 1 主导多款 AI 产品落地',
     email: 'wy1833411196@gmail.com',
     location: '北京 / 成都',
-    social: [
-      // 请补充
-    ],
+    social: [],
   },
 
   summary: '计算机科班出身，技术型 AI 产品经理。精通 Dify/Coze Agent 工作流编排、RAG 知识库搭建、VibeCoding 模式开发。曾主导车企 AI 客服（月销售额 300 万）、AI CRM（自研 Copilot）、政务智能引擎（92.5% 召回率）、教育数字人等多款产品从 0 到 1 落地。',
@@ -27,7 +25,7 @@ export const resume = {
         '推动公司成为 Dify 官方合作伙伴，助力实现月销售额 300 万的商业化目标',
         '主导自研 AI CRM（Copilot 方向）：设计智能填表引擎，从多源异构信息中自动提取关键字段一键写入，销售手动录入减少约 80%',
         '完成 8 大核心模块产品设计（客户画像、智能填表、销售流程、AI 销售助手、合同审查、翻译、看板、自动化工作流）',
-        '设计爬虫监控 + 热点资讯推送系统，打通 Webhook/飞书/Outlook', 
+        '设计爬虫监控 + 热点资讯推送系统，打通 Webhook/飞书/Outlook',
       ],
     },
     {
