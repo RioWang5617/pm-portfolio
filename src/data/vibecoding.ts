@@ -22,7 +22,7 @@ export const demos: Demo[] = [
     subtitle: '上传一份合同，AI 自动识别风险条款并提出修改建议',
     year: '2025',
     stack: ['Dify', 'Claude', 'Python'],
-    effort: 'TBD',
+    effort: '周末 2 天',
     tags: ['Agent 工作流', '文档分析'],
     cover: 'from-[#0F0F0E] to-[#2A2520]',
     motivation:
@@ -40,7 +40,7 @@ export const demos: Demo[] = [
     subtitle: '打通 Webhook/飞书/Outlook 的实时监控与自动化触达系统',
     year: '2025',
     stack: ['Python', 'Webhook', '飞书', 'Outlook'],
-    effort: 'TBD',
+    effort: '3 个晚上',
     tags: ['自动化', '工具链'],
     cover: 'from-[#1A1A18] to-[#0F0F0E]',
     motivation:
