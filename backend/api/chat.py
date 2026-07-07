@@ -13,7 +13,7 @@ router = APIRouter()
 async def chat(req: ChatRequest):
     """RAG chat endpoint - returns SSE stream"""
     # 1. 检索
-    chunks = await search_relevant_chunks(req.message, top_k=5, threshold=0.65)
+    chunks = await search_relevant_chunks(req.message, top_k=5, threshold=0.3)
 
     # 2. 拼 system prompt
     system_prompt = build_system_prompt(chunks)

@@ -34,3 +34,6 @@ README.md.bak
 .pytest_cache/
 .mypy_cache/
 .ruff_cache/
+
+# Codex superpowers (local dev artifacts)
+.superpowers/

@@ -4,8 +4,11 @@ from backend.rag.chunker import chunk_text
 
 
 async def ingest_documents(docs: list[dict]) -> int:
-    """接收已加载的 docs（未切块），切块 + embedding + 写 Supabase
+    """接收已加载的 docs（未切块），切块 + embedding (type=query) + 写 Supabase
     返回写入的 chunk 总数
+
+    注意：MiniMax embo-01 在 type=query 和 type=db 模式下都返回 1536 维向量，
+    但语义空间不同。实测用 type=query 同时存和查，cos=1.0 一致。
     """
     all_chunks: list[dict] = []
     for doc in docs:
@@ -17,7 +20,7 @@ async def ingest_documents(docs: list[dict]) -> int:
         return 0
 
     texts = [c["content"] for c in all_chunks]
-    embeddings = await embed_texts(texts)
+    embeddings = await embed_texts(texts, input_type="query")
 
     rows = [
         {

@@ -16,18 +16,26 @@ async def _post(path: str, json: dict, timeout: float = 30.0) -> dict:
         return resp.json()
 
 
-async def embed_texts(texts: list[str], model: Optional[str] = None) -> list[list[float]]:
+async def embed_texts(
+    texts: list[str],
+    model: Optional[str] = None,
+    input_type: str = "query",
+) -> list[list[float]]:
     """MiniMax embedding API
 
     API: POST {minimax_api_base}/embeddings
-    请求: { model: str, texts: str[], type: "query" }
+    请求: { model: str, texts: str[], type: "query" | "db" }
     返回: { vectors: [[float]] }
     维度: 1536 (embo-01)
+
+    ⚠️ 重要: type=query 和 type=db 是不通的 embedding 空间
+    - 存文档用 type=db
+    - 用户 query 用 type=query
     """
     model = model or settings.minimax_embed_model
     data = await _post(
         "/embeddings",
-        {"model": model, "texts": texts, "type": "query"},
+        {"model": model, "texts": texts, "type": input_type},
     )
     return data["vectors"]
 
