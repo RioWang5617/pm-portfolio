@@ -1,5 +1,5 @@
 # Stage 1: 前端构建
-FROM node:20-alpine AS frontend
+FROM node:22-alpine AS frontend
 WORKDIR /app
 
 RUN corepack enable && corepack prepare pnpm@latest --activate
@@ -9,7 +9,7 @@ RUN pnpm install --frozen-lockfile
 
 COPY src ./src
 COPY tsconfig.json tsconfig.node.json vite.config.ts tailwind.config.js postcss.config.js index.html ./
-RUN pnpm run export-data || pnpm build  # maybe no node
+RUN pnpm run export-data || pnpm build
 RUN pnpm build
 
 # Stage 2: 后端 + 运行
