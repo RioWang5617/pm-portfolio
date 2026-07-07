@@ -7,9 +7,7 @@ export const profile = {
   subtitle: '用 AI 拆解伪需求，把每一个"拍脑袋"的冲动，转化为经得起市场检验的现实。',
   location: '北京',
   email: 'wy1833411196@gmail.com',
-  social: [
-    // 请补充链接
-  ],
+  social: [],
   // 顶部能力标签
   capabilities: [
     'AI Agent 工作流',
