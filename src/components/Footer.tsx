@@ -18,21 +18,6 @@ export default function Footer() {
           </a>
         </div>
         <div className="md:col-span-3">
-          <p className="text-[0.75rem] uppercase tracking-[0.18em] text-muted mb-4">
-            Elsewhere
-          </p>
-          <ul className="space-y-2">
-            {profile.social.map((s) => (
-              <li key={s.label}>
-                <a
-                  href={s.href}
-                  className="text-[0.95rem] hover:text-accent transition-colors"
-                >
-                  {s.label}
-                </a>
-              </li>
-            ))}
-          </ul>
         </div>
         <div className="md:col-span-3">
           <p className="text-[0.75rem] uppercase tracking-[0.18em] text-muted mb-4">

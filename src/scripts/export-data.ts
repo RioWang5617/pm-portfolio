@@ -1,3 +1,4 @@
+/// <reference types="node" />
 // 把 src/data/*.ts 导出为 src/data.json，给后端 ingest 用
 import { writeFileSync } from 'fs'
 import { profile } from '../data/profile'

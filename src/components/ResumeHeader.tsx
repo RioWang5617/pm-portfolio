@@ -30,19 +30,7 @@ export function ResumeHeader() {
           <div className="mt-6 flex flex-wrap gap-x-5 gap-y-2 text-[0.85rem]">
             <a href={`mailto:${basics.email}`} className="underline decoration-line underline-offset-4 hover:decoration-ink">
               {basics.email}
-            </a>
-            {basics.social.map((s) => (
-              <a
-                key={s.href}
-                href={s.href}
-                target="_blank"
-                rel="noreferrer"
-                className="underline decoration-line underline-offset-4 hover:decoration-ink"
-              >
-                {s.label}
-              </a>
-            ))}
-          </div>
+            </a></div>
         </div>
 
         <a

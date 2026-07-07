@@ -1,3 +1,6 @@
+/// <reference types="node" />
+declare const global: any
+
 import { describe, it, expect, vi } from 'vitest'
 import { parseSSEStream } from './useStreaming'
 
