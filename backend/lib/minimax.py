@@ -5,7 +5,6 @@ from backend.config import settings
 
 
 async def _post(path: str, json: dict, timeout: float = 30.0) -> dict:
-    """统一的 MiniMax HTTP POST 调用（OpenAI 兼容）"""
     headers = {
         "Authorization": f"Bearer {settings.minimax_api_key}",
         "Content-Type": "application/json",
@@ -18,32 +17,34 @@ async def _post(path: str, json: dict, timeout: float = 30.0) -> dict:
 
 
 async def embed_texts(texts: list[str], model: Optional[str] = None) -> list[list[float]]:
-    """批量 embedding，返回与输入对应的 vector 列表
+    """MiniMax embedding API
 
-    注：实际 MiniMax API 路径与请求体字段需查官方文档核对。
-    这里假设是 OpenAI 兼容的 /v1/embeddings 端点。
+    API: POST {minimax_api_base}/embeddings
+    请求: { model: str, texts: str[], type: "query" }
+    返回: { vectors: [[float]] }
+    维度: 1536 (embo-01)
     """
     model = model or settings.minimax_embed_model
     data = await _post(
-        "/v1/embeddings",
-        {"model": model, "input": texts},
+        "/embeddings",
+        {"model": model, "texts": texts, "type": "query"},
     )
-    # OpenAI 兼容格式：data 数组按 index 对应输入
-    sorted_items = sorted(data["data"], key=lambda x: x["index"])
-    return [item["embedding"] for item in sorted_items]
+    return data["vectors"]
 
 
 async def chat_stream(messages: list[dict], model: Optional[str] = None) -> AsyncIterator[dict]:
-    """流式 chat，返回 SSE event 字典的 async generator
+    """MiniMax chat stream（OpenAI 兼容格式）
 
-    yield 格式：{"type": "token", "content": "..."} 或 {"type": "done"}
+    API: POST {minimax_api_base}/chat/completions
+    请求: { model, messages, stream: true }
+    返回: SSE events (OpenAI 兼容格式)
     """
     model = model or settings.minimax_chat_model
     headers = {
         "Authorization": f"Bearer {settings.minimax_api_key}",
         "Content-Type": "application/json",
     }
-    url = f"{settings.minimax_api_base}/v1/chat/completions"
+    url = f"{settings.minimax_api_base}/chat/completions"
     payload = {
         "model": model,
         "messages": messages,

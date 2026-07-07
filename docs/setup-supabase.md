@@ -7,11 +7,11 @@
 -- 启用 pgvector 扩展
 create extension if not exists vector;
 
--- documents 表
+-- documents 表（MiniMax embo-01 维度 = 1536）
 create table documents (
   id bigserial primary key,
   content text not null,
-  embedding vector(1024),
+  embedding vector(1536),
   metadata jsonb,
   created_at timestamptz default now()
 );
@@ -24,7 +24,7 @@ create index documents_embedding_idx on documents using ivfflat (embedding vecto
 
 ```sql
 create or replace function match_documents (
-  query_embedding vector(1024),
+  query_embedding vector(1536),
   match_threshold float,
   match_count int
 )
@@ -47,11 +47,6 @@ as $$
   limit match_count;
 $$;
 ```
-
-## ⚠️ 注意
-
-vector(1024) 是占位维度。实际维度需要先调一次 MiniMax embedding API 确认。
-如果实际维度不是 1024，需要修改上面 SQL 中的 `vector(1024)` 为实际值。
 
 ## 3. 验证
 
