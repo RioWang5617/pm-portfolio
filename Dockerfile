@@ -6,11 +6,18 @@ RUN corepack enable && corepack prepare pnpm@latest --activate
 
 COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 
-# pnpm 10+ 必须在 .npmrc 设置 onlyBuiltDependencies
-# 见 https://pnpm.io/settings
-RUN pnpm config set --location project onlyBuiltDependencies '["esbuild"]'
+# 用 --ignore-scripts 跳过 esbuild postinstall（因为 pnpm 10+ 阻止 esbuild build scripts）
+# 我们手动跑 esbuild postinstall
+RUN pnpm install --frozen-lockfile --ignore-scripts
 
-RUN pnpm install --frozen-lockfile
+# 手动跑 esbuild postinstall（pnpm 虚拟目录 .pnpm/esbuild@x/node_modules/esbuild/）
+RUN for v in esbuild@0.21.3 esbuild@0.28.1; do \
+      dir=$(find .pnpm -maxdepth 3 -type d -name "$v" 2>/dev/null | head -1) && \
+      if [ -n "$dir" ] && [ -f "$dir/node_modules/esbuild/install.js" ]; then \
+        echo "Running esbuild postinstall for $v"; \
+        cd "$dir/node_modules/esbuild" && node install.js && cd /app; \
+      fi; \
+    done
 
 COPY src ./src
 COPY tsconfig.json tsconfig.node.json vite.config.ts tailwind.config.js postcss.config.js index.html ./
