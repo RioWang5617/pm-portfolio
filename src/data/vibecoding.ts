@@ -7,53 +7,49 @@ export type Demo = {
   effort: string
   tags: string[]
   cover: string
-  // demo 页要写清的几件事
   motivation: string
   build: string
   whatILearned: string
-  // 嵌入或外链
   liveUrl?: string
   sourceUrl?: string
-  // 嵌入 iframe 的路径（如果有）
   embed?: string
 }
 
-// ⚠️ 下面是占位 demo
 export const demos: Demo[] = [
   {
     slug: 'prd-reviewer',
-    title: 'PRD 评审助手',
-    subtitle: '上传一份 PRD，5 秒拿到结构化反馈',
+    title: 'AI 合同审查助手',
+    subtitle: '上传一份合同，AI 自动识别风险条款并提出修改建议',
     year: '2025',
-    stack: ['Cursor', 'Claude Sonnet 4.5', 'Next.js', 'Vercel AI SDK'],
-    effort: '周末 2 天',
-    tags: ['AI 工作流', '提示词工程', 'B 端'],
+    stack: ['Dify', 'Claude', 'Python'],
+    effort: 'TBD',
+    tags: ['Agent 工作流', '文档分析'],
     cover: 'from-[#0F0F0E] to-[#2A2520]',
     motivation:
-      '我每次写完 PRD 都会怀疑"是不是漏了什么"。让 AI 当一个第一读者，可以发现错别字、缺失字段、模糊表述。它不是替代评审，是让人写得更扎实。',
+      '在 AI CRM 项目里要做合同审查模块，顺手做了一个通用的 AI 合同审查工具。',
     build:
-      '前端用 Next.js + Tailwind，后端用 Vercel AI SDK + Claude API。Prompt 是关键——我设计了一个 4 阶段工作流：① 提取文档结构 ② 按 PRD 标准检查清单逐项打分 ③ 输出"高/中/低优先级"问题 ④ 给出改写建议。最难的是"评分一致性"——最后用 few-shot + rubric 解决了。',
+      '基于 Dify 设计审查工作流：合同上传 → OCR/PDF 解析 → 条款分类（金额/时限/违约责任/保密条款）→ AI 逐条分析风险等级 → 输出审查报告。',
     whatILearned:
-      '提示词工程的核心不是"写得更巧"，是"定义得更清"。把"评分标准"写明白，比换一百种 prompt 模板都管用。',
-    liveUrl: 'https://prd-reviewer-demo.vercel.app',
-    sourceUrl: 'https://github.com/your-handle/prd-reviewer',
+      '法律领域对准确率要求极高——AI 只能"建议"不能"判断"。最终设计为"AI 标记风险 + 律师确认"流程，而不是全自动审查。',
+    liveUrl: '',
+    sourceUrl: '',
   },
   {
     slug: 'interview-cluster',
-    title: '用户访谈聚类工具',
-    subtitle: '把 20 段访谈录音转成"主题卡片墙"',
+    title: '爬虫状态监控 + 热点资讯推送',
+    subtitle: '打通 Webhook/飞书/Outlook 的实时监控与自动化触达系统',
     year: '2025',
-    stack: ['Claude API', 'Cursor', 'Whisper', 'React Flow'],
-    effort: '3 个晚上',
-    tags: ['用户研究', 'AI 工作流', '数据可视化'],
+    stack: ['Python', 'Webhook', '飞书', 'Outlook'],
+    effort: 'TBD',
+    tags: ['自动化', '工具链'],
     cover: 'from-[#1A1A18] to-[#0F0F0E]',
     motivation:
-      '做用户研究最痛苦的是"读 20 段访谈 → 提炼 8 个主题"。我把这个流程做成了一个工具。',
+      '在 AI CRM 项目中需要实时监控竞品动态和客户行业热点，手动查太慢。',
     build:
-      '三步：① Whisper 转录音 → 文本 ② Claude 提取"痛点 / 情绪 / 引用片段" ③ React Flow 渲染成可拖拽的卡片墙。最后一步很关键：卡片之间可以连线表示"属于同一主题"，聚类由人做，AI 只做提取。',
+      '设计爬虫自动化监控 + 热点资讯推送系统，打通 Webhook / 飞书 / Outlook 三端触达，实现销售线索与业务数据的实时监控与自动化播报。',
     whatILearned:
-      'AI 做"提取"，人做"聚类"——这条边界划对，工具才有价值。把聚类也交给 AI，看起来自动化高，但用户不再相信结果。',
-    liveUrl: 'https://interview-cluster-demo.vercel.app',
-    sourceUrl: 'https://github.com/your-handle/interview-cluster',
+      '工具的价值不在"功能多"，在"时机对"。凌晨推送的行业资讯没人看，改成每天早 9 点半发到飞书群，打开率从 12% 升到 67%。',
+    liveUrl: '',
+    sourceUrl: '',
   },
 ]
