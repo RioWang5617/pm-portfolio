@@ -37,7 +37,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY backend/ .
 COPY --from=frontend /app/dist /app/frontend_dist
-COPY --from=frontend /app/src/data.json /app/src/data.json || true
+COPY --from=frontend /app/src/data.json /app/src/data.json
 COPY public /app/public
 
 COPY nginx.conf /etc/nginx/conf.d/default.conf
