@@ -29,6 +29,16 @@ export function useChat() {
     })
   }, [])
 
+  const appendToLastMessage = useCallback((token: string) => {
+    setMessages((prev) => {
+      const next = [...prev]
+      if (next.length === 0) return prev
+      const last = next[next.length - 1]
+      next[next.length - 1] = { ...last, content: last.content + token }
+      return next
+    })
+  }, [])
+
   const setMessageSources = useCallback((sources: ChatMessage['sources']) => {
     setMessages((prev) => {
       const next = [...prev]
@@ -50,6 +60,7 @@ export function useChat() {
     error,
     addMessage,
     updateLastMessage,
+    appendToLastMessage,
     setMessageSources,
     setStatus,
     setError,

@@ -57,24 +57,21 @@ export function ChatPanel({ open, onClose }: Props) {
           if (event.type === 'sources' && event.sources) {
             chat.setMessageSources(event.sources)
           } else if (event.type === 'token' && event.content) {
-            const last = chat.messages[chat.messages.length - 1]
-            chat.updateLastMessage((last?.content || '') + event.content)
-          } else if (event.type === 'done') {
-            chat.setStatus('idle')
+            chat.appendToLastMessage(event.content)
           }
         },
       )
     } catch (e: any) {
       chat.setError(e?.message || '网络错误')
-      chat.setStatus('error')
     }
+    chat.setStatus('idle')
   }
 
   if (!open) return null
 
   return (
     <div
-      className="fixed bottom-24 right-6 z-50 w-[400px] max-w-[calc(100vw-2rem)] h-[600px] max-h-[calc(100vh-8rem)] bg-cream border border-line rounded-2xl shadow-2xl flex flex-col overflow-hidden"
+      className="fixed inset-4 md:inset-auto md:bottom-24 md:right-6 z-50 md:w-[400px] md:max-w-[calc(100vw-2rem)] md:h-[600px] md:max-h-[calc(100vh-8rem)] bg-cream border border-line rounded-2xl shadow-2xl flex flex-col overflow-hidden"
       role="dialog"
       aria-label="跟我聊"
     >

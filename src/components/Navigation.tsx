@@ -9,6 +9,7 @@ const links = [
 
 export default function Navigation() {
   const [scrolled, setScrolled] = useState(false)
+  const [menuOpen, setMenuOpen] = useState(false)
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12)
@@ -22,14 +23,15 @@ export default function Navigation() {
         scrolled ? 'bg-cream/85 backdrop-blur border-b border-line/60' : 'bg-transparent'
       }`}
     >
-      <div className="mx-auto max-w-wide px-6 md:px-10 py-5 flex items-center justify-between">
+      <div className="mx-auto max-w-wide px-6 md:px-10 py-4 md:py-5 flex items-center justify-between">
         <Link
           to="/"
-          className="font-display text-[1.4rem] md:text-[1.55rem] tracking-tightest leading-none italic"
+          className="font-display text-[1.3rem] md:text-[1.55rem] tracking-tightest leading-none italic"
         >
           Tianyang<span className="text-accent">.</span>
         </Link>
-        <nav className="flex items-center gap-6 md:gap-9">
+        {/* Desktop nav */}
+        <nav className="hidden md:flex items-center gap-9">
           {links.map((l) => (
             <NavLink
               key={l.to}
@@ -50,7 +52,42 @@ export default function Navigation() {
             跟我聊
           </button>
         </nav>
+        {/* Mobile hamburger */}
+        <button
+          onClick={() => setMenuOpen(!menuOpen)}
+          className="md:hidden flex flex-col gap-1.5 w-7 h-7 justify-center items-center"
+          aria-label="菜单"
+        >
+          <span className={`block w-5 h-px bg-ink transition-all duration-200 ${menuOpen ? 'rotate-45 translate-y-[3.5px]' : ''}`} />
+          <span className={`block w-5 h-px bg-ink transition-all duration-200 ${menuOpen ? 'opacity-0' : ''}`} />
+          <span className={`block w-5 h-px bg-ink transition-all duration-200 ${menuOpen ? '-rotate-45 -translate-y-[3.5px]' : ''}`} />
+        </button>
       </div>
+      {/* Mobile menu */}
+      {menuOpen && (
+        <nav className="md:hidden bg-cream/95 backdrop-blur border-b border-line/60 px-6 pb-6">
+          {links.map((l) => (
+            <NavLink
+              key={l.to}
+              to={l.to}
+              onClick={() => setMenuOpen(false)}
+              className={({ isActive }) =>
+                `block py-3 text-[1rem] tracking-wide transition-colors ${
+                  isActive ? 'text-ink' : 'text-muted hover:text-ink'
+                }`
+              }
+            >
+              {l.label}
+            </NavLink>
+          ))}
+          <button
+            onClick={() => { setMenuOpen(false); window.dispatchEvent(new CustomEvent('open-chat')) }}
+            className="block py-3 text-[1rem] tracking-wide text-muted hover:text-vermilion transition-colors"
+          >
+            跟我聊
+          </button>
+        </nav>
+      )}
     </header>
   )
 }

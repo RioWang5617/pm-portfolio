@@ -66,11 +66,14 @@ export default function CaseStudy() {
 
       {/* COVER */}
       <div className="mx-auto max-w-wide px-6 md:px-10 mb-20 md:mb-28 reveal">
-        <div
-          className={`aspect-[21/9] w-full rounded-sm bg-gradient-to-br ${w.cover} relative overflow-hidden`}
-        >
-          <div className="absolute inset-0 flex items-center justify-center">
-            <p className="font-display italic text-cream/85 text-[1.2rem] md:text-[1.8rem] leading-snug max-w-prose text-center px-8">
+        <div className={`aspect-[21/9] w-full rounded-sm relative overflow-hidden ${w.image ? '' : `bg-gradient-to-br ${w.cover}`}`}>
+          {w.image ? (
+            <img src={w.image} alt={w.title} className="absolute inset-0 w-full h-full object-cover" />
+          ) : (
+            <div className={`absolute inset-0 bg-gradient-to-br ${w.cover}`} />
+          )}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent flex items-center justify-center">
+            <p className="font-display italic text-cream/90 text-[1.2rem] md:text-[1.8rem] leading-snug max-w-prose text-center px-8">
               「{w.intro}」
             </p>
           </div>

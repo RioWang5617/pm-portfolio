@@ -35,12 +35,14 @@ export default function Home() {
                   查看作品集
                   <span className="transition-transform group-hover:translate-x-0.5">→</span>
                 </Link>
-                <Link
-                  to="/resume"
+                <a
+                  href="https://ivlrszbwekymbydhnlre.supabase.co/storage/v1/object/public/resume/wang-tianyang-resume.pdf"
+                  target="_blank"
+                  rel="noreferrer"
                   className="inline-flex items-center gap-2 px-5 py-3.5 text-[0.95rem] text-ink underline decoration-line underline-offset-[6px] hover:decoration-ink transition-colors"
                 >
                   下载简历
-                </Link>
+                </a>
               </div>
 
               <div className="mt-16 flex flex-wrap gap-2">

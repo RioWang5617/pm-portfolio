@@ -31,7 +31,7 @@ export default function About() {
             <p className="mt-6 text-[1.05rem] md:text-[1.18rem] text-muted">
               {profile.title} · 4 年工作经验 · {profile.location}
             </p>
-            <p className="mt-12 max-w-prose text-[1.18rem] md:text-[1.32rem] leading-[1.6] text-pretty">
+            <p className="mt-12 max-w-prose text-[1.18rem] md:text-[1.32rem] leading-[1.6] text-pretty text-justify">
               <em>{profile.pitch}</em>
             </p>
 
