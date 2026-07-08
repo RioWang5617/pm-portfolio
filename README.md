@@ -1,3 +1,15 @@
+---
+title: PM Portfolio — 王天阳个人作品集
+emoji: 🚀
+colorFrom: gray
+colorTo: indigo
+sdk: docker
+sdk_version: "1.0"
+app_file: Dockerfile
+pinned: true
+license: mit
+---
+
 # PM Portfolio — 王天阳个人作品集网站
 
 > AI 产品经理 王天阳 的个人作品集网站。**单容器全栈**：HF Spaces Docker 内跑 Nginx + FastAPI + 静态前端，对话 Supabase（数据库 + 存储）+ MiniMax LLM。
