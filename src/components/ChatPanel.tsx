@@ -1,7 +1,6 @@
 import { useEffect, useRef } from 'react'
 import { useChat } from '../hooks/useChat'
-import { parseSSEStream } from '../hooks/useStreaming'
-import { clearHistory } from '../hooks/useChatHistory'
+import { streamChat } from '../lib/minimax'
 import { ChatMessage } from './ChatMessage'
 import { ChatInput } from './ChatInput'
 import { ChatSuggestions } from './ChatSuggestions'
@@ -41,29 +40,18 @@ export function ChatPanel({ open, onClose }: Props) {
     chat.addMessage({ id: `ai-${Date.now()}`, role: 'assistant', content: '' })
     chat.setStatus('streaming')
 
-    try {
-      const history = chat.messages.slice(0, -2).map((m) => ({
-        role: m.role,
-        content: m.content,
-      }))
-      await parseSSEStream(
-        '/api/chat',
-        {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ message: text, history }),
-        },
-        (event) => {
-          if (event.type === 'sources' && event.sources) {
-            chat.setMessageSources(event.sources)
-          } else if (event.type === 'token' && event.content) {
-            chat.appendToLastMessage(event.content)
-          }
-        },
-      )
-    } catch (e: any) {
-      chat.setError(e?.message || '网络错误')
-    }
+    const history = chat.messages.slice(0, -2).map((m) => ({
+      role: m.role,
+      content: m.content,
+    }))
+
+    await streamChat(text, history, (event) => {
+      if (event.type === 'token' && event.content) {
+        chat.appendToLastMessage(event.content)
+      } else if (event.type === 'error' && event.content) {
+        chat.setError(event.content)
+      }
+    })
     chat.setStatus('idle')
   }
 
@@ -91,10 +79,7 @@ export function ChatPanel({ open, onClose }: Props) {
         <div className="flex items-center gap-2">
           {chat.messages.length > 0 && (
             <button
-              onClick={() => {
-                chat.clear()
-                clearHistory()
-              }}
+              onClick={() => chat.clear()}
               className="text-[0.75rem] text-muted hover:text-ink"
               title="清空对话"
             >

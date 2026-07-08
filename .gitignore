@@ -43,3 +43,4 @@ public/resume.pdf
 *.tsbuildinfo
 vite.config.js
 vite.config.d.ts
+.env.local

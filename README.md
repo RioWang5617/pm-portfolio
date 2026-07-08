@@ -12,7 +12,30 @@ license: mit
 
 # PM Portfolio — 王天阳个人作品集网站
 
-> AI 产品经理 王天阳 的个人作品集网站。**单容器全栈**：HF Spaces Docker 内跑 Nginx + FastAPI + 静态前端，对话 Supabase（数据库 + 存储）+ MiniMax LLM。
+> AI 产品经理 王天阳 的个人作品集网站。**纯静态部署**：前端直连 MiniMax API，无需后端。HF Spaces Docker 内跑 Nginx 静态服务。
+
+## 功能
+
+- 🏠 个人作品展示（Works / Vibecoding / About）
+- 💬 AI 对话助手（前端直连 MiniMax，流式响应）
+- 📄 简历 PDF 在线预览（Supabase Storage）
+- 📱 移动端适配
+
+## 环境变量
+
+在 HF Space Settings → Variables and secrets 中配置：
+
+| 变量名 | 说明 |
+|---|---|
+| `VITE_MINIMAX_API_KEY` | MiniMax API Key（必需） |
+
+## 本地开发
+
+```bash
+cp .env.example .env.local  # 填入你的 API Key
+pnpm install
+pnpm dev  # http://localhost:5173
+```
 
 **线上地址**：[https://qq1833411196-jianli.hf.space](https://qq1833411196-jianli.hf.space)
 

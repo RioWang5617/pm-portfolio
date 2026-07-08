@@ -1,15 +1,13 @@
-#!/bin/sh
+#!/bin/bash
 set -e
 
-echo "🚀 Starting PM Portfolio..."
+# HF Spaces 通过 VITE_MINIMAX_API_KEY 环境变量注入 API Key
+# 替换构建时写入的占位符 __API_KEY__
+if [ -n "$VITE_MINIMAX_API_KEY" ]; then
+  echo "🔑 Injecting MiniMax API key..."
+  find /usr/share/nginx/html -name '*.js' -exec \
+    sed -i "s|__API_KEY__|${VITE_MINIMAX_API_KEY}|g" {} +
+fi
 
-# 后端
-cd /app
-uvicorn backend.main:app --host 0.0.0.0 --port 8000 --workers 1 &
-BACKEND_PID=$!
-
-# 前端（Nginx 在前台）
+echo "🚀 Starting PM Portfolio (static)..."
 nginx -g "daemon off;"
-
-# 如果 nginx 退出，关闭后端
-kill $BACKEND_PID 2>/dev/null || true
