@@ -31,7 +31,7 @@ export default function About() {
                 {profile.email}
               </a>
               <a
-                href="/resume.pdf"
+                href="https://huggingface.co/datasets/qq1833411196/wang-tianyang-resume/resolve/main/wang-tianyang-resume.pdf"
                 target="_blank"
                 rel="noreferrer"
                 className="underline decoration-line underline-offset-4 hover:decoration-ink"
@@ -69,7 +69,7 @@ export default function About() {
             </h2>
             <p className="mt-3 text-[0.95rem] text-muted">
               包含完整工作经历、项目细节、教育背景与专业技能。
-              加载慢的话可以 <a href="/resume.pdf" className="underline decoration-line underline-offset-4 hover:decoration-ink">下载 PDF</a> 离线看。
+              加载慢的话可以 <a href="https://huggingface.co/datasets/qq1833411196/wang-tianyang-resume/resolve/main/wang-tianyang-resume.pdf" className="underline decoration-line underline-offset-4 hover:decoration-ink">下载 PDF</a> 离线看。
             </p>
           </div>
         </div>
@@ -77,7 +77,7 @@ export default function About() {
         {/* PDF viewer（iframe + 移动端 fallback） */}
         <div className="rounded-2xl overflow-hidden border border-line bg-white shadow-sm">
           <iframe
-            src="/resume.pdf#toolbar=0&navpanes=0&scrollbar=1&view=FitH"
+            src="https://huggingface.co/datasets/qq1833411196/wang-tianyang-resume/resolve/main/wang-tianyang-resume.pdf#toolbar=0&navpanes=0&scrollbar=1&view=FitH"
             title="王天阳 · 简历"
             className="w-full block"
             style={{ height: 'min(85vh, 1100px)' }}
@@ -87,7 +87,7 @@ export default function About() {
         {/* 移动端 fallback：直接显示下载按钮 */}
         <div className="mt-4 md:hidden">
           <a
-            href="/resume.pdf"
+            href="https://huggingface.co/datasets/qq1833411196/wang-tianyang-resume/resolve/main/wang-tianyang-resume.pdf"
             className="block text-center px-6 py-3 bg-ink text-paper rounded-full"
           >
             在新窗口打开 PDF
