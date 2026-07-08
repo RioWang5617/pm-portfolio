@@ -43,3 +43,7 @@ public/resume.pdf
 vite.config.js
 vite.config.d.ts
 .env.local
+
+# Build outputs (root copies for HF Static)
+dist/
+*.jpg
