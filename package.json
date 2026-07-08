@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "prebuild": "bash scripts/prebuild.sh",
     "build": "tsc -b && vite build",
     "preview": "vite preview",
     "export-data": "tsx src/scripts/export-data.ts"
