@@ -7,6 +7,11 @@ sdk: static
 app_file: dist/index.html
 pinned: true
 license: mit
+build:
+  - npm install -g pnpm
+  - pnpm install --frozen-lockfile --ignore-scripts
+  - pnpm run export-data || true
+  - pnpm build
 ---
 
 # PM Portfolio — 王天阳个人作品集网站
