@@ -22,4 +22,32 @@ export const profile = {
   // 一句话自我介绍
   pitch:
     '计算机科班出身，4 年经验（2 年 Python 后端 + 2 年 AI 产品经理）。从 0 到 1 主导过车企 AI Agent 售后方案、AI CRM 替代微软 Copilot、国际新闻 AI 协同中台、AI 数字人大屏等多款 B 端产品落地。精通 Dify/Coze 编排、RAG 知识库搭建与 VibeCoding 模式开发。',
+  // 工作经历
+  experience: [
+    {
+      company: '北京昆仑联通',
+      role: 'AI 产品经理',
+      period: '2025 - 至今',
+      highlights: [
+        '主导头部车企（宝马、大众）AI Agent 售后智能化方案，基于 Dify 搭建企业级 AI Agent，月销 300 万',
+        '从 0 到 1 规划自研 AI CRM 替代微软 Copilot，智能填表引擎减少销售 80% 手动录入',
+      ],
+    },
+    {
+      company: '北京职此青绿',
+      role: 'AI 产品经理',
+      period: '2024 - 2025',
+      highlights: [
+        '主导 AI 数字人大屏产品，首批 100+ 台落地连锁幼教门店',
+        '搭建全球新闻 AI 协同中台，含大模型微调 + 模板适配，跨国定稿效率提升 80%+',
+      ],
+    },
+  ],
+  // 专业技能
+  skills: {
+    'AI 产品': ['AI Agent 工作流设计', 'RAG 知识库搭建', 'Prompt 工程', '大模型微调'],
+    '工具平台': ['Dify', 'Coze', 'Cursor', 'Claude'],
+    '技术能力': ['Python', 'SQL', 'API 设计', '数据分析'],
+    '产品能力': ['PRD 编写', '用户调研', '数据驱动', '项目管理'],
+  },
 }

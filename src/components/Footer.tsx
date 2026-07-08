@@ -20,13 +20,8 @@ export default function Footer() {
         <div className="md:col-span-3">
         </div>
         <div className="md:col-span-3">
-          <p className="text-[0.75rem] uppercase tracking-[0.18em] text-muted mb-4">
+          <p className="text-[0.75rem] uppercase tracking-[0.18em] text-muted">
             © 2025
-          </p>
-          <p className="text-[0.92rem] text-muted leading-relaxed">
-            本站用 Vite + React + Tailwind 编写。
-            <br />
-            风格参考 Stripe Press。
           </p>
         </div>
       </div>

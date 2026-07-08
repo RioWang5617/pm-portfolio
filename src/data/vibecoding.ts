@@ -7,6 +7,7 @@ export type Demo = {
   effort: string
   tags: string[]
   cover: string
+  image?: string
   motivation: string
   build: string
   whatILearned: string
@@ -25,6 +26,7 @@ export const demos: Demo[] = [
     effort: '周末 2 天',
     tags: ['Agent 工作流', '文档分析'],
     cover: 'from-[#0F0F0E] to-[#2A2520]',
+    image: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&h=600&fit=crop',
     motivation:
       '在 AI CRM 项目里要做合同审查模块，顺手做了一个通用的 AI 合同审查工具。',
     build:
@@ -43,6 +45,7 @@ export const demos: Demo[] = [
     effort: '3 个晚上',
     tags: ['自动化', '工具链'],
     cover: 'from-[#1A1A18] to-[#0F0F0E]',
+    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop',
     motivation:
       '在 AI CRM 项目中需要实时监控竞品动态和客户行业热点，手动查太慢。',
     build:

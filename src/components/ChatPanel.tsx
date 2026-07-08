@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react'
 import { useChat } from '../hooks/useChat'
 import { parseSSEStream } from '../hooks/useStreaming'
-import { loadHistory, saveHistory, clearHistory } from '../hooks/useChatHistory'
+import { clearHistory } from '../hooks/useChatHistory'
 import { ChatMessage } from './ChatMessage'
 import { ChatInput } from './ChatInput'
 import { ChatSuggestions } from './ChatSuggestions'
@@ -15,13 +15,15 @@ export function ChatPanel({ open, onClose }: Props) {
   const chat = useChat()
   const scrollRef = useRef<HTMLDivElement>(null)
 
-  // 加载历史（仅首次打开时）
+  // 每次打开都重新开始新对话，显示问候语
   useEffect(() => {
     if (open && chat.messages.length === 0) {
-      const history = loadHistory()
-      if (history.length > 0) {
-        history.forEach((m) => chat.addMessage(m))
-      }
+      chat.addMessage({
+        id: `greeting-${Date.now()}`,
+        role: 'assistant',
+        content:
+          '您好！我是王天阳的数字分身 👋\n\n有什么问题欢迎和我交流～',
+      })
     }
   }, [open])
 
@@ -32,12 +34,7 @@ export function ChatPanel({ open, onClose }: Props) {
     }
   }, [chat.messages])
 
-  // 持久化
-  useEffect(() => {
-    if (chat.messages.length > 0) {
-      saveHistory(chat.messages)
-    }
-  }, [chat.messages])
+
 
   const send = async (text: string) => {
     chat.addMessage({ id: `user-${Date.now()}`, role: 'user', content: text })
@@ -83,9 +80,16 @@ export function ChatPanel({ open, onClose }: Props) {
     >
       {/* Header */}
       <div className="flex items-center justify-between px-5 py-4 border-b border-line">
-        <div>
-          <h2 className="font-display text-[1.15rem]">跟我聊</h2>
-          <p className="text-[0.75rem] text-muted">AI 替身 · 基于真实作品回答</p>
+        <div className="flex items-center gap-3">
+          <img
+            src="/avatar.png"
+            alt="AI 替身"
+            className="w-9 h-9 rounded-full object-cover"
+          />
+          <div>
+            <h2 className="font-display text-[1.15rem]">跟我聊</h2>
+            <p className="text-[0.75rem] text-muted">AI 替身 · 基于真实作品回答</p>
+          </div>
         </div>
         <div className="flex items-center gap-2">
           {chat.messages.length > 0 && (
@@ -112,10 +116,14 @@ export function ChatPanel({ open, onClose }: Props) {
 
       {/* Messages */}
       <div ref={scrollRef} className="flex-1 overflow-y-auto p-4">
-        {chat.messages.length === 0 ? (
-          <ChatSuggestions onSelect={send} />
-        ) : (
-          chat.messages.map((m) => <ChatMessage key={m.id} message={m} />)
+        {chat.messages.map((m) => (
+          <ChatMessage key={m.id} message={m} />
+        ))}
+        {/* 只有打招呼时仍展示建议 */}
+        {chat.messages.length <= 1 && chat.messages[0]?.role === 'assistant' && (
+          <div className="mt-4">
+            <ChatSuggestions onSelect={send} />
+          </div>
         )}
         {chat.status === 'error' && (
           <div className="text-center text-[0.85rem] text-vermilion py-4">

@@ -1,14 +1,23 @@
 import { profile } from '../data/profile'
 import ResumeViewer from '../components/ResumeViewer'
+import { SidebarNav } from '../components/SidebarNav'
 
 const RESUME_URL =
   'https://ivlrszbwekymbydhnlre.supabase.co/storage/v1/object/public/resume/wang-tianyang-resume.pdf'
 
 export default function About() {
+  const sidebarSections = [
+    { id: 'about', label: 'About' },
+    { id: 'experience', label: '经历' },
+    { id: 'skills', label: '技能' },
+    { id: 'resume', label: 'Resume' },
+  ]
+
   return (
     <article>
+      <SidebarNav sections={sidebarSections} />
       {/* HERO */}
-      <section className="mx-auto max-w-wide px-6 md:px-10 pt-20 md:pt-32 pb-12">
+      <section id="about" className="mx-auto max-w-wide px-6 md:px-10 pt-20 md:pt-32 pb-12">
         <div className="grid md:grid-cols-12 gap-8">
           <div className="md:col-span-2">
             <p className="text-[0.72rem] uppercase tracking-[0.22em] text-muted">
@@ -59,8 +68,81 @@ export default function About() {
         </div>
       </section>
 
+      {/* 工作经历 */}
+      <section id="experience" className="mx-auto max-w-wide px-6 md:px-10 py-16 md:py-24 border-t border-line/60">
+        <div className="grid md:grid-cols-12 gap-8">
+          <div className="md:col-span-2">
+            <p className="text-[0.72rem] uppercase tracking-[0.22em] text-muted">
+              Experience
+            </p>
+          </div>
+          <div className="md:col-span-10">
+            <h2 className="font-display text-[2rem] md:text-[2.6rem] tracking-tightest leading-[1.1] text-balance">
+              <em>工作经历</em>
+            </h2>
+            <div className="mt-10 space-y-10">
+              {profile.experience.map((exp, i) => (
+                <div key={i} className="grid md:grid-cols-12 gap-4 md:gap-8">
+                  <div className="md:col-span-3">
+                    <p className="text-[0.85rem] text-muted num">{exp.period}</p>
+                  </div>
+                  <div className="md:col-span-9">
+                    <h3 className="font-display text-[1.3rem] md:text-[1.5rem] tracking-tightest">
+                      {exp.role}
+                    </h3>
+                    <p className="mt-1 text-[0.95rem] text-muted">{exp.company}</p>
+                    <ul className="mt-4 space-y-2">
+                      {exp.highlights.map((h, j) => (
+                        <li key={j} className="text-[1rem] text-ink/80 leading-[1.6] pl-4 border-l-2 border-line">
+                          {h}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 专业技能 */}
+      <section id="skills" className="mx-auto max-w-wide px-6 md:px-10 py-16 md:py-24 border-t border-line/60">
+        <div className="grid md:grid-cols-12 gap-8">
+          <div className="md:col-span-2">
+            <p className="text-[0.72rem] uppercase tracking-[0.22em] text-muted">
+              Skills
+            </p>
+          </div>
+          <div className="md:col-span-10">
+            <h2 className="font-display text-[2rem] md:text-[2.6rem] tracking-tightest leading-[1.1] text-balance">
+              <em>专业技能</em>
+            </h2>
+            <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-8">
+              {Object.entries(profile.skills).map(([category, items]) => (
+                <div key={category}>
+                  <h3 className="text-[0.85rem] uppercase tracking-[0.15em] text-muted mb-4">
+                    {category}
+                  </h3>
+                  <div className="flex flex-wrap gap-2">
+                    {items.map((skill) => (
+                      <span
+                        key={skill}
+                        className="px-3 py-1.5 text-[0.85rem] bg-ink/5 rounded-full text-ink/80"
+                      >
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* 简历 PDF 在线翻阅 - PDF.js 渲染成可滚动图文 */}
-      <section className="mx-auto max-w-wide px-6 md:px-10 py-12 border-t border-line/60">
+      <section id="resume" className="mx-auto max-w-wide px-6 md:px-10 py-12 border-t border-line/60">
         <div className="grid md:grid-cols-12 gap-8 mb-8">
           <div className="md:col-span-2">
             <p className="text-[0.72rem] uppercase tracking-[0.22em] text-muted">

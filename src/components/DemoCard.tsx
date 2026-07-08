@@ -11,7 +11,17 @@ export function DemoCard({ demo }: Props) {
       to={`/vibecoding/${demo.slug}`}
       className="group block border border-line rounded-xl overflow-hidden hover:border-ink transition-colors"
     >
-      <div className={`aspect-[16/9] bg-gradient-to-br ${demo.cover} relative`}>
+      <div className={`aspect-[16/9] relative overflow-hidden ${demo.image ? '' : `bg-gradient-to-br ${demo.cover}`}`}>
+        {demo.image ? (
+          <img
+            src={demo.image}
+            alt={demo.title}
+            className="absolute inset-0 w-full h-full object-cover"
+            loading="lazy"
+          />
+        ) : (
+          <div className={`absolute inset-0 bg-gradient-to-br ${demo.cover}`} />
+        )}
         <div className="absolute inset-0 flex items-end p-5">
           <span className="font-mono text-[0.7rem] text-cream/70 uppercase tracking-[0.18em]">
             {demo.tags[0]}

@@ -34,12 +34,16 @@ export function ChatLauncher() {
     <>
       <button
         onClick={() => setOpen(true)}
-        className={`fixed bottom-6 right-6 z-40 w-14 h-14 rounded-full bg-ink text-cream shadow-lg hover:bg-vermilion transition-all ${
+        className={`fixed bottom-6 right-6 z-40 w-14 h-14 rounded-full shadow-lg hover:shadow-xl transition-all overflow-hidden ${
           pulse && !open ? 'animate-pulse' : ''
         }`}
         aria-label="跟我聊"
       >
-        <span className="text-[1.5rem]">💬</span>
+        <img
+          src="/avatar.png"
+          alt="跟我聊"
+          className="w-full h-full object-cover"
+        />
       </button>
       <ChatPanel open={open} onClose={() => setOpen(false)} />
     </>

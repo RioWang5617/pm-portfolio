@@ -22,6 +22,11 @@ class Settings(BaseSettings):
     minimax_chat_model: str = "MiniMax-M3"
     minimax_embed_model: str = "emb-01"
 
+    # Fallback 模型配置（当 MiniMax 不可用时自动切换）
+    fallback_api_key: str = ""
+    fallback_api_base: str = "https://api.mimo.ai"
+    fallback_chat_model: str = "mimo-v2.5-pro"
+
     admin_token: str = "change-me"
 
     host: str = "0.0.0.0"

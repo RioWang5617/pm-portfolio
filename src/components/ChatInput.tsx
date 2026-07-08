@@ -18,7 +18,7 @@ export function ChatInput({ onSend, disabled }: Props) {
   }
 
   const handleKey = (e: KeyboardEvent<HTMLTextAreaElement>) => {
-    if (e.key === 'Enter' && (e.metaKey || e.ctrlKey)) {
+    if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault()
       send()
     }
@@ -37,7 +37,7 @@ export function ChatInput({ onSend, disabled }: Props) {
           }}
           onKeyDown={handleKey}
           disabled={disabled}
-          placeholder="问我任何问题... (Cmd/Ctrl+Enter 发送)"
+          placeholder="问我任何问题... (Enter 发送，Shift+Enter 换行)"
           rows={1}
           className="flex-1 resize-none bg-transparent outline-none text-[0.95rem] leading-[1.4] text-ink placeholder:text-muted disabled:opacity-50"
         />

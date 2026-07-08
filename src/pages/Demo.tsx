@@ -1,5 +1,6 @@
 import { Link, useParams } from 'react-router-dom'
 import { demos } from '../data/vibecoding'
+import { SidebarNav } from '../components/SidebarNav'
 
 export default function Demo() {
   const { slug } = useParams()
@@ -14,9 +15,17 @@ export default function Demo() {
     )
   }
 
+  const sidebarSections = [
+    { id: 'overview', label: '概述' },
+    { id: 'motivation', label: '为什么做' },
+    { id: 'build', label: '怎么做的' },
+    { id: 'learned', label: '学到的' },
+  ]
+
   return (
     <article>
-      <header className="mx-auto max-w-wide px-6 md:px-10 pt-16 md:pt-28 pb-12">
+      <SidebarNav sections={sidebarSections} />
+      <header id="overview" className="mx-auto max-w-wide px-6 md:px-10 pt-16 md:pt-28 pb-12">
         <div className="grid md:grid-cols-12 gap-8">
           <div className="md:col-span-2">
             <Link to="/vibecoding" className="text-[0.78rem] uppercase tracking-[0.18em] text-muted hover:text-ink transition-colors">
@@ -60,6 +69,14 @@ export default function Demo() {
           <div className="aspect-[16/9] w-full rounded-sm overflow-hidden border border-line">
             <iframe src={d.embed} className="w-full h-full" title={d.title} />
           </div>
+        ) : d.image ? (
+          <div className="aspect-[16/9] w-full rounded-sm overflow-hidden">
+            <img
+              src={d.image}
+              alt={d.title}
+              className="w-full h-full object-cover"
+            />
+          </div>
         ) : (
           <div className={`aspect-[16/9] w-full rounded-sm bg-gradient-to-br ${d.cover} flex items-center justify-center`}>
             <p className="font-display italic text-cream/85 text-[1.4rem] md:text-[2rem] tracking-tightest">{d.title}</p>
@@ -67,15 +84,15 @@ export default function Demo() {
         )}
       </div>
 
-      <Section title="为什么做" eyebrow="01">
+      <Section id="motivation" title="为什么做" eyebrow="01">
         <p>{d.motivation}</p>
       </Section>
 
-      <Section title="怎么做的" eyebrow="02">
+      <Section id="build" title="怎么做的" eyebrow="02">
         <p>{d.build}</p>
       </Section>
 
-      <Section title="学到的" eyebrow="03">
+      <Section id="learned" title="学到的" eyebrow="03">
         <p>{d.whatILearned}</p>
       </Section>
 
@@ -114,9 +131,9 @@ function Meta({ label, value }: { label: string; value: React.ReactNode }) {
   )
 }
 
-function Section({ title, eyebrow, children }: { title: string; eyebrow: string; children: React.ReactNode }) {
+function Section({ id, title, eyebrow, children }: { id?: string; title: string; eyebrow: string; children: React.ReactNode }) {
   return (
-    <section className="mx-auto max-w-wide px-6 md:px-10 py-14 md:py-20 border-t border-line/60">
+    <section id={id} className="mx-auto max-w-wide px-6 md:px-10 py-14 md:py-20 border-t border-line/60">
       <div className="grid md:grid-cols-12 gap-8">
         <div className="md:col-span-2">
           <p className="font-mono text-[0.78rem] text-muted num">{eyebrow}</p>

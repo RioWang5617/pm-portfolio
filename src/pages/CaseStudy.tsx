@@ -1,5 +1,6 @@
 import { Link, useParams } from 'react-router-dom'
 import { works } from '../data/works'
+import { SidebarNav } from '../components/SidebarNav'
 
 export default function CaseStudy() {
   const { slug } = useParams()
@@ -16,10 +17,20 @@ export default function CaseStudy() {
     )
   }
 
+  const sidebarSections = [
+    { id: 'overview', label: '概述' },
+    { id: 'context', label: '背景' },
+    { id: 'problem', label: '问题' },
+    { id: 'approach', label: '过程' },
+    { id: 'outcome', label: '结果' },
+    { id: 'reflection', label: '反思' },
+  ]
+
   return (
     <article>
+      <SidebarNav sections={sidebarSections} />
       {/* HERO */}
-      <header className="mx-auto max-w-wide px-6 md:px-10 pt-16 md:pt-28 pb-16 md:pb-20">
+      <header id="overview" className="mx-auto max-w-wide px-6 md:px-10 pt-16 md:pt-28 pb-16 md:pb-20">
         <div className="grid md:grid-cols-12 gap-8">
           <div className="md:col-span-2">
             <Link
@@ -74,17 +85,17 @@ export default function CaseStudy() {
       </section>
 
       {/* CONTEXT */}
-      <Section title="背景" eyebrow="01">
+      <Section id="context" title="背景" eyebrow="01">
         <p>{w.context}</p>
       </Section>
 
       {/* PROBLEM */}
-      <Section title="问题" eyebrow="02">
+      <Section id="problem" title="问题" eyebrow="02">
         <p>{w.problem}</p>
       </Section>
 
       {/* APPROACH */}
-      <Section title="过程" eyebrow="03">
+      <Section id="approach" title="过程" eyebrow="03">
         <div className="space-y-12">
           {w.approach.map((a, i) => (
             <div key={a.title} className="reveal">
@@ -103,7 +114,7 @@ export default function CaseStudy() {
       </Section>
 
       {/* OUTCOME */}
-      <Section title="结果" eyebrow="04">
+      <Section id="outcome" title="结果" eyebrow="04">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
           {w.outcome.map((o) => (
             <div key={o.label} className="reveal">
@@ -119,7 +130,7 @@ export default function CaseStudy() {
       </Section>
 
       {/* REFLECTION */}
-      <Section title="如果重来" eyebrow="05">
+      <Section id="reflection" title="如果重来" eyebrow="05">
         <p className="text-pretty">{w.reflection}</p>
       </Section>
 
@@ -137,16 +148,18 @@ export default function CaseStudy() {
 }
 
 function Section({
+  id,
   title,
   eyebrow,
   children,
 }: {
+  id?: string
   title: string
   eyebrow: string
   children: React.ReactNode
 }) {
   return (
-    <section className="mx-auto max-w-wide px-6 md:px-10 py-14 md:py-20 border-t border-line/60">
+    <section id={id} className="mx-auto max-w-wide px-6 md:px-10 py-14 md:py-20 border-t border-line/60">
       <div className="grid md:grid-cols-12 gap-8">
         <div className="md:col-span-2">
           <p className="font-mono text-[0.78rem] text-muted num">{eyebrow}</p>
