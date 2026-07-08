@@ -4,8 +4,8 @@ set -e
 echo "🚀 Starting PM Portfolio..."
 
 # 后端
-cd /app/backend
-uvicorn main:app --host 0.0.0.0 --port 8000 --workers 1 &
+cd /app
+uvicorn backend.main:app --host 0.0.0.0 --port 8000 --workers 1 &
 BACKEND_PID=$!
 
 # 前端（Nginx 在前台）
