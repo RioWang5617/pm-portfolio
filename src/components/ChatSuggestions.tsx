@@ -3,16 +3,18 @@ interface Props {
 }
 
 const SUGGESTIONS = [
-  '你最近在做什么？',
-  'AI Agent 项目里最难的决策是什么？',
-  '你怎么定义"好的 AI 产品"？',
-  '能讲讲 RAG 那个项目的复盘吗？',
+  '你这 4 年最大的成长是什么？',
+  '车企 AI 售后那个项目，怎么从 0 做到月销 300 万的？',
+  'AI CRM 真能替代微软 Copilot 吗？',
+  '你平时用什么 AI 工具帮自己干活？',
+  '聊聊你踩过最深的坑？',
+  '怎么联系你？',
 ]
 
 export function ChatSuggestions({ onSelect }: Props) {
   return (
     <div className="p-6 space-y-2">
-      <p className="text-[0.8rem] text-muted mb-3">试试问：</p>
+      <p className="text-[0.78rem] text-muted mb-3">随便聊聊 ↓</p>
       {SUGGESTIONS.map((q) => (
         <button
           key={q}

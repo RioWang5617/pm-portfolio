@@ -166,7 +166,7 @@ export default function Home() {
                   <span className="text-[0.9rem] text-muted">AI</span>
                 </div>
                 <p className="text-[1.05rem] text-muted max-w-prose mb-6">
-                  让 AI 替身基于林越的真实作品回答你关于他经历、想法、案例的任意问题。
+                  让 AI 替身基于我的真实作品回答你关于我经历、想法、案例的任意问题。
                 </p>
                 <span className="text-[0.95rem] underline decoration-line underline-offset-[6px] group-hover:decoration-ink">
                   打开聊天 →

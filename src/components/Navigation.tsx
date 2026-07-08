@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react'
 const links = [
   { to: '/works', label: 'Works' },
   { to: '/vibecoding', label: 'Vibecoding' },
-  { to: '/resume', label: 'Resume' },
   { to: '/about', label: 'About' },
 ]
 
@@ -28,7 +27,7 @@ export default function Navigation() {
           to="/"
           className="font-display text-[1.4rem] md:text-[1.55rem] tracking-tightest leading-none italic"
         >
-          Lin&nbsp;Yue<span className="text-accent">.</span>
+          王天阳<span className="text-accent">.</span>
         </Link>
         <nav className="flex items-center gap-6 md:gap-9">
           {links.map((l) => (

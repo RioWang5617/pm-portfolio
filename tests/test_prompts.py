@@ -10,12 +10,12 @@ def test_build_system_prompt_includes_chunks():
     assert "片段1内容" in prompt
     assert "作品1" in prompt
     assert "片段2内容" in prompt
-    assert "林越" in prompt or "AI 替身" in prompt
+    assert "王天阳" in prompt
 
 
 def test_build_system_prompt_handles_empty_chunks():
     prompt = build_system_prompt([])
-    assert "林越" in prompt or "AI 替身" in prompt
+    assert "王天阳" in prompt
 
 
 def test_build_system_prompt_includes_behavior_rules():
