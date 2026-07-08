@@ -8,7 +8,7 @@ COPY nginx.conf /etc/nginx/conf.d/default.conf
 COPY index.html /usr/share/nginx/html/
 COPY assets/ /usr/share/nginx/html/assets/
 COPY favicon.svg /usr/share/nginx/html/
-COPY avatar.png /usr/share/nginx/html/ 2>/dev/null || true
+COPY avatar.png /usr/share/nginx/html/
 
 EXPOSE 7860
 
