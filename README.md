@@ -3,8 +3,7 @@ title: PM Portfolio — 王天阳个人作品集
 emoji: 🚀
 colorFrom: gray
 colorTo: indigo
-sdk: static
-app_file: index.html
+sdk: docker
 pinned: true
 license: mit
 ---
