@@ -10,6 +10,7 @@
     "export-data": "tsx src/scripts/export-data.ts"
   },
   "dependencies": {
+    "pdfjs-dist": "^6.1.200",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.27.0"
@@ -17,6 +18,7 @@
   "devDependencies": {
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.2",
+    "@types/node": "^22.10.0",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
     "@vitejs/plugin-react": "^4.3.3",
@@ -28,7 +30,6 @@
     "tsx": "^4.23.0",
     "typescript": "^5.6.3",
     "vite": "^5.4.10",
-    "vitest": "^4.1.9",
-    "@types/node": "^22.10.0"
+    "vitest": "^4.1.9"
   }
 }

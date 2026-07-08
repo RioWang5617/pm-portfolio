@@ -1,4 +1,8 @@
 import { profile } from '../data/profile'
+import ResumeViewer from '../components/ResumeViewer'
+
+const RESUME_URL =
+  'https://ivlrszbwekymbydhnlre.supabase.co/storage/v1/object/public/resume/wang-tianyang-resume.pdf'
 
 export default function About() {
   return (
@@ -31,7 +35,7 @@ export default function About() {
                 {profile.email}
               </a>
               <a
-                href="https://huggingface.co/datasets/qq1833411196/wang-tianyang-resume/resolve/main/wang-tianyang-resume.pdf"
+                href={RESUME_URL}
                 target="_blank"
                 rel="noreferrer"
                 className="underline decoration-line underline-offset-4 hover:decoration-ink"
@@ -55,7 +59,7 @@ export default function About() {
         </div>
       </section>
 
-      {/* 简历 PDF 在线预览 */}
+      {/* 简历 PDF 在线翻阅 - PDF.js 渲染成可滚动图文 */}
       <section className="mx-auto max-w-wide px-6 md:px-10 py-12 border-t border-line/60">
         <div className="grid md:grid-cols-12 gap-8 mb-8">
           <div className="md:col-span-2">
@@ -69,30 +73,12 @@ export default function About() {
             </h2>
             <p className="mt-3 text-[0.95rem] text-muted">
               包含完整工作经历、项目细节、教育背景与专业技能。
-              加载慢的话可以 <a href="https://huggingface.co/datasets/qq1833411196/wang-tianyang-resume/resolve/main/wang-tianyang-resume.pdf" className="underline decoration-line underline-offset-4 hover:decoration-ink">下载 PDF</a> 离线看。
+              想离线看可以 <a href={RESUME_URL} target="_blank" rel="noreferrer" className="underline decoration-line underline-offset-4 hover:decoration-ink">下载 PDF</a>。
             </p>
           </div>
         </div>
 
-        {/* PDF viewer（iframe + 移动端 fallback） */}
-        <div className="rounded-2xl overflow-hidden border border-line bg-white shadow-sm">
-          <iframe
-            src="https://huggingface.co/datasets/qq1833411196/wang-tianyang-resume/resolve/main/wang-tianyang-resume.pdf#toolbar=0&navpanes=0&scrollbar=1&view=FitH"
-            title="王天阳 · 简历"
-            className="w-full block"
-            style={{ height: 'min(85vh, 1100px)' }}
-          />
-        </div>
-
-        {/* 移动端 fallback：直接显示下载按钮 */}
-        <div className="mt-4 md:hidden">
-          <a
-            href="https://huggingface.co/datasets/qq1833411196/wang-tianyang-resume/resolve/main/wang-tianyang-resume.pdf"
-            className="block text-center px-6 py-3 bg-ink text-paper rounded-full"
-          >
-            在新窗口打开 PDF
-          </a>
-        </div>
+        <ResumeViewer />
       </section>
     </article>
   )

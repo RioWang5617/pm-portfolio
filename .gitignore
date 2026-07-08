@@ -38,3 +38,8 @@ README.md.bak
 # Codex superpowers (local dev artifacts)
 .superpowers/
 public/resume.pdf
+
+# TypeScript build info
+*.tsbuildinfo
+vite.config.js
+vite.config.d.ts
