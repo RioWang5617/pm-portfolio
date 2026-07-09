@@ -1,5 +1,6 @@
 import { NavLink, Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
+import { useTheme, type Theme } from '../hooks/useTheme'
 
 const links = [
   { to: '/works', label: 'Works' },
@@ -7,9 +8,16 @@ const links = [
   { to: '/about', label: 'About' },
 ]
 
+const themeOptions: { key: Theme; label: string; icon: string }[] = [
+  { key: 'warm', label: '暖色', icon: '🎨' },
+  { key: 'light', label: '白色', icon: '☀️' },
+  { key: 'dark', label: '暗夜', icon: '🌙' },
+]
+
 export default function Navigation() {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
+  const { theme, setTheme } = useTheme()
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12)
@@ -47,10 +55,27 @@ export default function Navigation() {
           ))}
           <button
             onClick={() => window.dispatchEvent(new CustomEvent('open-chat'))}
-            className="text-[0.92rem] tracking-wide text-muted hover:text-vermilion transition-colors"
+            className="text-[0.92rem] tracking-wide text-muted hover:text-accent transition-colors"
           >
             跟我聊
           </button>
+          {/* Theme toggle */}
+          <div className="flex items-center gap-1 ml-2 border border-line rounded-full p-1">
+            {themeOptions.map((opt) => (
+              <button
+                key={opt.key}
+                onClick={() => setTheme(opt.key)}
+                className={`w-7 h-7 rounded-full flex items-center justify-center text-sm transition-all ${
+                  theme === opt.key
+                    ? 'bg-ink text-cream scale-110'
+                    : 'text-muted hover:text-ink hover:bg-line/50'
+                }`}
+                title={opt.label}
+              >
+                {opt.icon}
+              </button>
+            ))}
+          </div>
         </nav>
         {/* Mobile hamburger */}
         <button
@@ -82,10 +107,28 @@ export default function Navigation() {
           ))}
           <button
             onClick={() => { setMenuOpen(false); window.dispatchEvent(new CustomEvent('open-chat')) }}
-            className="block py-3 text-[1rem] tracking-wide text-muted hover:text-vermilion transition-colors"
+            className="block py-3 text-[1rem] tracking-wide text-muted hover:text-accent transition-colors"
           >
             跟我聊
           </button>
+          {/* Theme toggle mobile */}
+          <div className="flex items-center gap-2 pt-4 mt-2 border-t border-line/40">
+            <span className="text-[0.82rem] text-muted mr-2">主题</span>
+            {themeOptions.map((opt) => (
+              <button
+                key={opt.key}
+                onClick={() => setTheme(opt.key)}
+                className={`w-8 h-8 rounded-full flex items-center justify-center text-sm transition-all ${
+                  theme === opt.key
+                    ? 'bg-ink text-cream scale-110'
+                    : 'text-muted hover:text-ink hover:bg-line/50'
+                }`}
+                title={opt.label}
+              >
+                {opt.icon}
+              </button>
+            ))}
+          </div>
         </nav>
       )}
     </header>

@@ -25,18 +25,18 @@ export default function About() {
             </p>
           </div>
           <div className="md:col-span-10">
-            <h1 className="font-display text-[3rem] md:text-[5rem] leading-[0.95] tracking-tightest text-balance">
+            <h1 className="font-display text-[3rem] md:text-[5rem] leading-[0.95] tracking-tightest text-balance anim-bounce-in">
               <em>我是 {profile.nameZh}。</em>
             </h1>
-            <p className="mt-6 text-[1.05rem] md:text-[1.18rem] text-muted">
+            <p className="mt-6 text-[1.05rem] md:text-[1.18rem] text-muted anim-bounce-in-delay">
               {profile.title} · 4 年工作经验 · {profile.location}
             </p>
-            <p className="mt-12 max-w-prose text-[1.18rem] md:text-[1.32rem] leading-[1.6] text-pretty text-justify">
+            <p className="mt-12 text-[1.18rem] md:text-[1.32rem] leading-[1.6] text-pretty text-justify anim-bounce-in-delay-2">
               <em>{profile.pitch}</em>
             </p>
 
             {/* 联系方式 */}
-            <div className="mt-10 flex flex-wrap gap-x-6 gap-y-2 text-[0.95rem]">
+            <div className="mt-10 flex flex-wrap gap-x-6 gap-y-2 text-[0.95rem] anim-bounce-in-delay-3">
               <a
                 href={`mailto:${profile.email}`}
                 className="underline decoration-line underline-offset-4 hover:decoration-ink"
@@ -69,7 +69,7 @@ export default function About() {
       </section>
 
       {/* 工作经历 */}
-      <section id="experience" className="mx-auto max-w-wide px-6 md:px-10 py-16 md:py-24 border-t border-line/60">
+      <section id="experience" className="mx-auto max-w-wide px-6 md:px-10 py-16 md:py-24 border-t border-line/60 reveal">
         <div className="grid md:grid-cols-12 gap-8">
           <div className="md:col-span-2">
             <p className="text-[0.72rem] uppercase tracking-[0.22em] text-muted">
@@ -107,7 +107,7 @@ export default function About() {
       </section>
 
       {/* 专业技能 */}
-      <section id="skills" className="mx-auto max-w-wide px-6 md:px-10 py-16 md:py-24 border-t border-line/60">
+      <section id="skills" className="mx-auto max-w-wide px-6 md:px-10 py-16 md:py-24 border-t border-line/60 reveal">
         <div className="grid md:grid-cols-12 gap-8">
           <div className="md:col-span-2">
             <p className="text-[0.72rem] uppercase tracking-[0.22em] text-muted">
@@ -142,7 +142,7 @@ export default function About() {
       </section>
 
       {/* 简历 PDF 在线翻阅 - PDF.js 渲染成可滚动图文 */}
-      <section id="resume" className="mx-auto max-w-wide px-6 md:px-10 py-12 border-t border-line/60">
+      <section id="resume" className="mx-auto max-w-wide px-6 md:px-10 py-12 border-t border-line/60 reveal">
         <div className="grid md:grid-cols-12 gap-8 mb-8">
           <div className="md:col-span-2">
             <p className="text-[0.72rem] uppercase tracking-[0.22em] text-muted">

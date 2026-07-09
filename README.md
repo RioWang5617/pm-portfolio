@@ -8,55 +8,67 @@ pinned: true
 license: mit
 ---
 
-# PM Portfolio — 王天阳个人作品集网站
+# PM Portfolio — 王天阳个人作品集
 
-> AI 产品经理 王天阳 的个人作品集网站。**纯静态部署**：前端直连 MiniMax API，无需后端。HF Spaces Docker 内跑 Nginx 静态服务。
+> AI 产品经理王天阳的个人作品集。纯前端 SPA，部署在 Hugging Face Spaces（Nginx + Docker）。
 
 ## 功能
 
-- 🏠 个人作品展示（Works / Vibecoding / About）
-- 💬 AI 对话助手（前端直连 MiniMax，流式响应）
-- 📄 简历 PDF 在线预览（Supabase Storage）
-- 📱 移动端适配
+- 🏠 **首页** — 全屏居中 Landing，浮动光斑背景
+- 📂 **Works** — 作品案例展示（横向卡片 + 滚动动画）
+- 🎨 **Vibecoding** — AI Demo 展示（交替方向 + 入场动画）
+- 👤 **About** — 个人介绍
+- 💬 **AI 对话** — 前端直连 MiniMax API，流式响应
+- 🎨 **三套主题** — Warm / Light / Dark，localStorage 持久化
+- 📱 响应式适配
 
-## 环境变量
+## 技术栈
 
-在 HF Space Settings → Variables and secrets 中配置：
-
-| 变量名 | 说明 |
+| 层 | 技术 |
 |---|---|
-| `VITE_MINIMAX_API_KEY` | MiniMax API Key（必需） |
+| 框架 | React 18 + TypeScript |
+| 构建 | Vite 5 |
+| 样式 | Tailwind CSS + CSS Variables |
+| 路由 | React Router 6 |
+| LLM | MiniMax（前端直连） |
+| 部署 | Hugging Face Spaces (Docker + Nginx) |
 
 ## 本地开发
 
 ```bash
-cp .env.example .env.local  # 填入你的 API Key
+cp .env.example .env.local  # 填入 VITE_MINIMAX_API_KEY
 pnpm install
 pnpm dev  # http://localhost:5173
 ```
 
+## 环境变量
+
+| 变量名 | 说明 |
+|---|---|
+| `VITE_MINIMAX_API_KEY` | MiniMax API Key（AI 对话功能必需） |
+
+## 部署
+
+```bash
+pnpm build
+cp -r dist/* .
+git add -A && git commit -m "deploy"
+# 推送到 HF Spaces
+```
+
 **线上地址**：[https://qq1833411196-jianli.hf.space](https://qq1833411196-jianli.hf.space)
 
----
+## 目录结构
 
-## 📋 目录
-
-1. [快速开始](#-快速开始)
-2. [架构设计](#-架构设计)
-3. [目录结构](#-目录结构)
-4. [代码详解](#-代码详解)
-5. [环境变量 / 密钥 / 账号](#-环境变量--密钥--账号)
-6. [本地开发](#-本地开发)
-7. [数据库 (Supabase)](#-数据库-supabase)
-8. [文件存储 (Supabase Storage)](#-文件存储-supabase-storage)
-9. [LLM (MiniMax / 官方 OpenAI 兼容)](#-llm-minimax--官方-openai-兼容)
-10. [部署到 Hugging Face Spaces](#-部署到-hugging-face-spaces)
-11. [GitHub Actions 自动任务](#-github-actions-自动任务)
-12. [RAG 知识库构建流程](#-rag-知识库构建流程)
-13. [未完成 / 待办事项](#-未完成--待办事项)
-14. [常见问题 / 故障排查](#-常见问题--故障排查)
-
----
+```
+src/
+├── components/    # UI 组件
+├── data/          # 静态数据（works, vibecoding, profile）
+├── hooks/         # 自定义 Hooks（useChat, useTheme, useInView）
+├── lib/           # 工具库（minimax API）
+├── pages/         # 页面组件
+└── index.css      # 全局样式 + 主题变量 + 动画
+```
 
 ## 🚀 快速开始
 

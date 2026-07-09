@@ -11,9 +11,12 @@ export default function Works() {
       >
         ← Home
       </Link>
-      <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16">
+      <h1 className="mt-12 font-display text-[2.2rem] md:text-[3rem] tracking-tightest leading-[1.1]">
+        成功落地案例经验分析
+      </h1>
+      <div className="mt-12 space-y-16">
         {works.map((w, i) => (
-          <CaseStudyCard key={w.slug} work={w} featured={i === 0} />
+          <CaseStudyCard key={w.slug} work={w} index={i} />
         ))}
       </div>
     </div>

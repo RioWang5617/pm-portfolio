@@ -15,11 +15,11 @@ export default function Vibecoding() {
         Vibecoding
       </h1>
       <p className="text-[1rem] md:text-[1.1rem] text-muted max-w-prose mb-12">
-        用 AI 工具在周末/业余时间做的小东西。每个都是完整可用的工具。
+        因服务器资源有限，无法承载作品，本页面只做展示。
       </p>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {demos.map((d) => (
-          <DemoCard key={d.slug} demo={d} />
+      <div className="space-y-8 md:space-y-12">
+        {demos.map((d, i) => (
+          <DemoCard key={d.slug} demo={d} index={i} />
         ))}
       </div>
     </div>

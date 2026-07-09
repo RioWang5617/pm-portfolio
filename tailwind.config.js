@@ -7,11 +7,13 @@ export default {
   theme: {
     extend: {
       colors: {
-        cream: '#F4EFE6',
-        ink: '#0E0E0C',
-        muted: '#6B6760',
-        line: '#DCD6C7',
-        accent: '#B8431F',
+        cream: 'var(--bg)',
+        ink: 'var(--text)',
+        muted: 'var(--muted)',
+        line: 'var(--line)',
+        accent: 'var(--accent)',
+        'card-bg': 'var(--card-bg)',
+        'card-border': 'var(--card-border)',
       },
       fontFamily: {
         serif: ['"Fraunces"', 'Georgia', 'serif'],

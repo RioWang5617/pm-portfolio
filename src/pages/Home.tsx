@@ -1,64 +1,71 @@
-import { Link } from 'react-router-dom'
-import { profile } from '../data/profile'
-
 export default function Home() {
   return (
-    <div>
-      {/* HERO */}
-      <section id="hero" className="relative">
-        <div className="mx-auto max-w-wide px-6 md:px-10 pt-24 md:pt-36 pb-24 md:pb-40">
-          <div className="grid md:grid-cols-12 gap-y-12 gap-x-8">
-            <div className="md:col-span-2">
-              <p className="text-[0.72rem] uppercase tracking-[0.22em] text-muted">
-                Portfolio
-                <br />
-                2025
-              </p>
-            </div>
-            <div className="md:col-span-10">
-              <h1 className="font-display font-light text-[2.8rem] sm:text-[4rem] md:text-[5.6rem] lg:text-[7rem] leading-[0.95] tracking-tightest text-balance">
-                <span className="italic">把模糊的需求，</span>
-                <br />
-                <span>变成</span>{' '}
-                <span className="italic">可上线</span>
-                <span>的产品。</span>
-              </h1>
-              <p className="mt-10 md:mt-14 max-w-prose text-[1.08rem] md:text-[1.18rem] leading-[1.65] text-muted text-pretty">
-                {profile.subtitle}
-              </p>
+    <section className="relative h-[calc(100vh-5rem)] flex flex-col items-center text-center px-6 overflow-hidden home-hero">
+      {/* 浮动光斑背景 */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden>
+        <div className="blob blob-1" />
+        <div className="blob blob-2" />
+      </div>
 
-              <div className="mt-12 flex flex-wrap items-center gap-4">
-                <Link
-                  to="/works"
-                  className="group inline-flex items-center gap-2 bg-ink text-cream px-6 py-3.5 rounded-full text-[0.95rem] hover:bg-accent transition-colors"
-                >
-                  查看作品集
-                  <span className="transition-transform group-hover:translate-x-0.5">→</span>
-                </Link>
+      {/* 主内容 — 居中 */}
+      <div className="flex-1 flex items-center justify-center">
+        <div className="relative z-10 -translate-y-[5%] w-full">
+          <div className="max-w-wide mx-auto grid grid-cols-12 items-start gap-6 px-4">
+            {/* 左 meta 列 */}
+            <div className="col-span-2 hidden md:flex flex-col items-start pl-8">
+              <div className="text-[0.72rem] uppercase tracking-[0.22em] text-muted">PORTFOLIO</div>
+              <div className="text-[0.72rem] uppercase tracking-[0.22em] text-muted mt-2">2025</div>
+            </div>
+
+            {/* 右侧大标题区，使用你的排版结构（已按要求保留字号与负 margin） */}
+            <div className="col-span-12 md:col-span-10 relative overflow-visible">
+              <div className="typography-container">
+                <div className="artistic-title">
+                  <div className="cluster-left">
+                    <div className="char-yi">一</div>
+                    <div className="char-qi">起</div>
+                    <div className="char-zuodian">做点</div>
+                  </div>
+
+                  <div className="cluster-right">
+                    <div className="char-huge char-you">有</div>
+                    <div className="cluster-mid-small">
+                      <span>意</span>
+                      <span>思</span>
+                      <span>的</span>
+                    </div>
+                    <div className="char-huge char-chan">产</div>
+                    <div className="char-huge char-pin">品</div>
+                  </div>
+                </div>
+
+                <div className="structured-subtitle">
+                  <div>把模糊的需求，</div>
+                  <div>变成可上线的产品。</div>
+                </div>
+              </div>
+
+              {/* 按钮组（保持原有行为与样式） */}
+              <div className="hero-cta mt-8 flex items-center gap-4 w-full">
                 <a
                   href="https://ivlrszbwekymbydhnlre.supabase.co/storage/v1/object/public/resume/wang-tianyang-resume.pdf"
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center gap-2 px-5 py-3.5 text-[0.95rem] text-ink underline decoration-line underline-offset-[6px] hover:decoration-ink transition-colors"
+                  className="group ml-auto inline-flex items-center gap-3 px-6 py-3 rounded-full text-[0.95rem] tracking-wide border border-ink text-ink hover:bg-ink hover:text-cream transition-all duration-300"
                 >
-                  下载简历
+                  查看我的简历
+                  <span className="transition-transform group-hover:translate-x-0.5">→</span>
                 </a>
-              </div>
-
-              <div className="mt-16 flex flex-wrap gap-2">
-                {profile.capabilities.map((c, i) => (
-                  <span
-                    key={c}
-                    className="text-[0.85rem] px-3 py-1.5 border border-line rounded-full text-muted num"
-                  >
-                    {String(i + 1).padStart(2, '0')} · {c}
-                  </span>
-                ))}
               </div>
             </div>
           </div>
         </div>
-      </section>
-    </div>
+      </div>
+
+      {/* 底部版权 */}
+      <div className="relative z-10 pb-6 text-[0.75rem] text-muted/60 tracking-wider">
+        © 我没有token了
+      </div>
+    </section>
   )
 }
