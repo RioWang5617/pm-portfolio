@@ -202,8 +202,11 @@ curl -X POST -H "X-Admin-Token: change-me-to-random-string" http://localhost:800
 | 项目 | 值 |
 |---|---|
 | 网址 | https://github.com |
+| 用户名 | `RioWang5617` |
 | 邮箱 | `1833411196@qq.com` |
 | 密码 | `aa11235617` |
+| 仓库地址 | https://github.com/RioWang5617/pm-portfolio |
+| Classic Token | `<YOUR_GITHUB_TOKEN>`（已配置在 git remote URL 中，无过期，repo 权限） |
 
 ---
 
