@@ -105,7 +105,7 @@ git push hf main
 | 用户名 | `qq1833411196` |
 | 邮箱 | `wy1833411196@gmail.com` |
 | 密码 | `Aa11235617.` |
-| Access Token | `<YOUR_HF_TOKEN>` |
+| Access Token | `<YOUR_HF_TOKEN>` （已配置在 git remote URL 中） |
 | Space 名称 | `qq1833411196/jianli` |
 | 线上地址 | https://qq1833411196-jianli.hf.space |
 
@@ -197,5 +197,15 @@ curl -X POST -H "X-Admin-Token: change-me-to-random-string" http://localhost:800
 
 ---
 
-**文档更新时间**：2026-07-08
+### 5. GitHub（代码托管）
+
+| 项目 | 值 |
+|---|---|
+| 网址 | https://github.com |
+| 邮箱 | `1833411196@qq.com` |
+| 密码 | `aa11235617` |
+
+---
+
+**文档更新时间**：2026-07-09
 **作者**：王天阳
