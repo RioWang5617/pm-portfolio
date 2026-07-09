@@ -1,13 +1,14 @@
 # 多阶段构建：先用 Node 构建前端，再用 nginx 提供服务
 FROM node:22-alpine AS builder
 
-RUN corepack enable && corepack prepare pnpm@latest --activate
+RUN npm install -g pnpm
 
 WORKDIR /app
 COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 RUN pnpm install --frozen-lockfile
 
 COPY index.html vite.config.ts tsconfig*.json tailwind.config.js postcss.config.js ./
+COPY scripts/ scripts/
 COPY src/ src/
 COPY public/ public/
 
