@@ -1,14 +1,26 @@
-# 纯静态 nginx：直接提供预构建文件
+# 多阶段构建：先用 Node 构建前端，再用 nginx 提供服务
+FROM node:22-alpine AS builder
+
+RUN corepack enable && corepack prepare pnpm@latest --activate
+
+WORKDIR /app
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
+RUN pnpm install --frozen-lockfile
+
+COPY index.html vite.config.ts tsconfig*.json tailwind.config.js postcss.config.js ./
+COPY src/ src/
+COPY public/ public/
+
+RUN pnpm build
+
+# 生产阶段：nginx 提供静态文件
 FROM nginx:stable-alpine
 
 RUN apk add --no-cache curl
 
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
-COPY index.html /usr/share/nginx/html/
-COPY assets/ /usr/share/nginx/html/assets/
-COPY favicon.svg /usr/share/nginx/html/
-COPY avatar.png /usr/share/nginx/html/
+COPY --from=builder /app/dist/ /usr/share/nginx/html/
 
 EXPOSE 7860
 
