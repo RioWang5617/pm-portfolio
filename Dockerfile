@@ -1,11 +1,9 @@
 # 多阶段构建：先用 Node 构建前端，再用 nginx 提供服务
 FROM node:22-alpine AS builder
 
-RUN npm install -g pnpm
-
 WORKDIR /app
-COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
-RUN pnpm install --frozen-lockfile
+COPY package.json pnpm-lock.yaml ./
+RUN npm install -g pnpm && pnpm install --no-frozen-lockfile
 
 COPY index.html vite.config.ts tsconfig*.json tailwind.config.js postcss.config.js ./
 COPY scripts/ scripts/
