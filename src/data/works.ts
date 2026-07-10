@@ -26,7 +26,7 @@ export const works: CaseStudy[] = [
     team: '北京昆仑联通 · B 端 AI',
     tags: ['AI Agent', 'Dify', 'B 端', '知识库', '商业化'],
     cover: 'from-[#1F2A44] to-[#0E0E0C]',
-    image: '/images/car-after-sales-agent.jpg',
+    image: '/images/car-after-sales-agent.svg',
     intro:
       '针对头部车企（宝马、大众等）售后维修体系中"手册检索难、人工报价繁琐、客户维保触达率低"的三大痛点，主导设计并交付基于 Dify 的企业级 AI Agent 商业化方案。',
     context:
@@ -73,7 +73,7 @@ export const works: CaseStudy[] = [
     team: '北京昆仑联通 · 自研 SaaS',
     tags: ['CRM', 'AI Agent', 'Copilot', 'B 端', '多源异构'],
     cover: 'from-[#2A2520] to-[#0F0F0E]',
-    image: '/images/ai-crm.jpg',
+    image: '/images/ai-crm.svg',
     intro:
       '针对公司原采买微软 CRM 存在 Copilot 授权成本过高、且无法与内部异构系统深度打通复用数据的痛点，主导从 0 到 1 规划并自研贴合系统集成商业务链路的 AI-CRM 产品。',
     context:
@@ -120,7 +120,7 @@ export const works: CaseStudy[] = [
     team: '北京职此青绿 · 企业 AI 中台',
     tags: ['多模态', '大模型微调', 'B 端', '跨国协同', 'PRD'],
     cover: 'from-[#1A2A2A] to-[#0E0E0C]',
-    image: '/images/global-news-ai.jpg',
+    image: '/images/global-news-ai.svg',
     intro:
       '为集团全球多国子公司搭建从"子公司内容生产"到"总部审批定稿"的全链路 AI 协同中台。微调通用大模型处理多语种业务术语，配合模板化 AI 创作，跨国定稿效率提升 80%+。',
     context:
@@ -167,7 +167,7 @@ export const works: CaseStudy[] = [
     team: '北京职此青绿 · B 端多模态 AI',
     tags: ['数字人', '多模态', 'TTS/ASR', 'B 端', 'RAG'],
     cover: 'from-[#2A1F1A] to-[#0E0E0C]',
-    image: '/images/ai-digital-human.jpg',
+    image: '/images/ai-digital-human.svg',
     intro:
       '为北京某区域性连锁少儿教育机构（伊顿善育）定制软硬一体的 AI 虚拟数字人大屏，部署于其在北京的数十家线下门店大厅。首批百余台设备已成功完成采购与线下门店落地。',
     context:
