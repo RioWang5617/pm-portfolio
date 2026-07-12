@@ -12,6 +12,7 @@ export default {
         muted: 'var(--muted)',
         line: 'var(--line)',
         accent: 'var(--accent)',
+        vermilion: 'var(--vermilion, #E34234)',
         'card-bg': 'var(--card-bg)',
         'card-border': 'var(--card-border)',
       },

@@ -18,9 +18,9 @@ license: mit
 - 📂 **Works** — 作品案例展示（横向卡片 + 滚动动画）
 - 🎨 **Vibecoding** — AI Demo 展示（交替方向 + 入场动画）
 - 👤 **About** — 个人介绍
-- 💬 **AI 对话** — 前端直连 MiniMax API，流式响应
+- → **AI 对话** — 前端直连 MiniMax API，流式响应
 - 🎨 **三套主题** — Warm / Light / Dark，localStorage 持久化
-- 📱 响应式适配
+- → 响应式适配
 
 ## 技术栈
 
@@ -896,7 +896,7 @@ jobs:
 
 ---
 
-## 🔄 RAG 知识库构建流程
+## → RAG 知识库构建流程
 
 ### 数据源
 

@@ -30,8 +30,8 @@ export default function Layout() {
     return () => io.disconnect()
   }, [pathname])
 
-  return (
-    <div className="min-h-screen flex flex-col bg-cream">
+    return (
+      <div className="min-h-screen flex flex-col bg-cream text-ink">
       <Navigation />
       <main className="flex-1">
         <Outlet />

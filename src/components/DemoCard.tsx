@@ -66,8 +66,6 @@ export function DemoCard({ demo, index }: Props) {
         <div className="md:w-[55%] p-6 md:p-8 lg:p-10 flex flex-col justify-center">
           <div className="flex items-center gap-3 mb-4">
             <span className="text-[0.7rem] font-mono text-muted num">{demo.year}</span>
-            <span className="w-4 h-px bg-line" />
-            <span className="text-[0.7rem] font-mono text-muted num">{demo.effort}</span>
           </div>
 
           <h3 className="font-display text-[1.4rem] md:text-[1.8rem] lg:text-[2.2rem] leading-[1.1] tracking-tight group-hover:text-vermilion transition-colors duration-300">

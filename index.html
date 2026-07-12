@@ -17,9 +17,9 @@
     <script>
       (function() {
         const themes = {
-          warm: { '--bg':'#F4EFE6','--text':'#0E0E0C','--muted':'#6B6760','--line':'#DCD6C7','--accent':'#B8431F','--card-bg':'#FFFFFF','--card-border':'#DCD6C7' },
-          light: { '--bg':'#FFFFFF','--text':'#111827','--muted':'#6B7280','--line':'#E5E7EB','--accent':'#2563EB','--card-bg':'#F9FAFB','--card-border':'#E5E7EB' },
-          dark: { '--bg':'#111827','--text':'#F9FAFB','--muted':'#9CA3AF','--line':'#374151','--accent':'#60A5FA','--card-bg':'#1F2937','--card-border':'#374151' }
+          warm: { '--bg':'#F2F1ED','--text':'#1C1C1A','--muted':'#7B7970','--line':'#DDD9CF','--accent':'#5B7553','--vermilion':'#C45D3E','--card-bg':'#FFFFFF','--card-border':'#DDD9CF' },
+          light: { '--bg':'#FFFFFF','--text':'#111827','--muted':'#6B7280','--line':'#E5E7EB','--accent':'#2563EB','--vermilion':'#DC2626','--card-bg':'#F9FAFB','--card-border':'#E5E7EB' },
+          dark: { '--bg':'#111827','--text':'#F9FAFB','--muted':'#9CA3AF','--line':'#374151','--accent':'#60A5FA','--vermilion':'#F87171','--card-bg':'#1F2937','--card-border':'#374151' }
         };
         const t = localStorage.getItem('theme') || 'warm';
         const vars = themes[t] || themes.warm;

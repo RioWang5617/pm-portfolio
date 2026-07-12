@@ -4,7 +4,6 @@ export type Demo = {
   subtitle: string
   year: string
   stack: string[]
-  effort: string
   tags: string[]
   cover: string
   image?: string
@@ -14,6 +13,7 @@ export type Demo = {
   liveUrl?: string
   sourceUrl?: string
   embed?: string
+  customPage?: boolean
 }
 
 export const demos: Demo[] = [
@@ -23,7 +23,6 @@ export const demos: Demo[] = [
     subtitle: '导入微信聊天记录，AI 模仿某人说话风格跟你对话',
     year: '2025',
     stack: ['Python', 'Claude', '微信导出'],
-    effort: '周末 2 天',
     tags: ['NLP', '趣味'],
     cover: 'from-[#1A0F1A] to-[#0E0E0E]',
     image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=600&fit=crop',
@@ -35,6 +34,7 @@ export const demos: Demo[] = [
       '说话风格是最难模仿的——"嗯嗯"和"嗯"和"嗯。"代表三种完全不同的情绪。AI 能学会用词，但很难学会"什么时候不用词"。',
     liveUrl: '',
     sourceUrl: '',
+    customPage: true,
   },
   {
     slug: 'express-master',
@@ -42,7 +42,6 @@ export const demos: Demo[] = [
     subtitle: '授权手机号，自动全网聚合所有快递状态',
     year: '2025',
     stack: ['Python', '快递100 API', '微信小程序'],
-    effort: '周末 2 天',
     tags: ['聚合', '效率工具'],
     cover: 'from-[#1A1A2A] to-[#0E0E14]',
     image: 'https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?w=800&h=600&fit=crop',
@@ -54,6 +53,7 @@ export const demos: Demo[] = [
       '聚合类工具的核心壁垒不是"能查"，是"查得准"。不同快递公司的数据格式差异巨大，光是"已签收"就有十几种表述方式。',
     liveUrl: '',
     sourceUrl: '',
+    customPage: true,
   },
   {
     slug: 'prd-reviewer',
@@ -61,7 +61,6 @@ export const demos: Demo[] = [
     subtitle: '上传一份合同，AI 自动识别风险条款并提出修改建议',
     year: '2025',
     stack: ['Dify', 'Claude', 'Python'],
-    effort: '周末 2 天',
     tags: ['Agent 工作流', '文档分析'],
     cover: 'from-[#0F0F0E] to-[#2A2520]',
     image: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&h=600&fit=crop',
@@ -73,6 +72,7 @@ export const demos: Demo[] = [
       '法律领域对准确率要求极高——AI 只能"建议"不能"判断"。最终设计为"AI 标记风险 + 律师确认"流程，而不是全自动审查。',
     liveUrl: '',
     sourceUrl: '',
+    customPage: true,
   },
   {
     slug: 'interview-cluster',
@@ -80,7 +80,6 @@ export const demos: Demo[] = [
     subtitle: '打通 Webhook/飞书/Outlook 的实时监控与自动化触达系统',
     year: '2025',
     stack: ['Python', 'Webhook', '飞书', 'Outlook'],
-    effort: '3 个晚上',
     tags: ['自动化', '工具链'],
     cover: 'from-[#1A1A18] to-[#0F0F0E]',
     image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop',
@@ -92,6 +91,7 @@ export const demos: Demo[] = [
       '工具的价值不在"功能多"，在"时机对"。凌晨推送的行业资讯没人看，改成每天早 9 点半发到飞书群，打开率从 12% 升到 67%。',
     liveUrl: '',
     sourceUrl: '',
+    customPage: true,
   },
   {
     slug: 'resume-optimizer',
@@ -99,7 +99,6 @@ export const demos: Demo[] = [
     subtitle: '上传简历，AI 逐段分析并给出优化建议',
     year: '2025',
     stack: ['Dify', 'PDF.js', 'Claude'],
-    effort: '周末 1 天',
     tags: ['文档分析', '求职'],
     cover: 'from-[#1E293B] to-[#0F172A]',
     image: 'https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=800&h=600&fit=crop',
@@ -111,6 +110,7 @@ export const demos: Demo[] = [
       '简历优化的核心不是"写得好"，是"让 HR 3 秒内看到亮点"。AI 最大的价值是站在招聘方视角做逆向审查，而不是帮用户"美化文字"。',
     liveUrl: '',
     sourceUrl: '',
+    customPage: true,
   },
   {
     slug: 'competitor-radar',
@@ -118,7 +118,6 @@ export const demos: Demo[] = [
     subtitle: '输入产品名，自动爬取信息生成竞品对比报告',
     year: '2025',
     stack: ['Python', 'Claude', 'Chart.js'],
-    effort: '2 个晚上',
     tags: ['自动化', '数据分析'],
     cover: 'from-[#1A1F2E] to-[#0E0E14]',
     image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop',
@@ -130,6 +129,7 @@ export const demos: Demo[] = [
       '竞品分析的价值不在"收集信息"，在"发现差异"。AI 擅长横向对比，但产品经理必须自己判断"这个差异重不重要"。',
     liveUrl: '',
     sourceUrl: '',
+    customPage: true,
   },
   {
     slug: 'prd-generator',
@@ -137,7 +137,6 @@ export const demos: Demo[] = [
     subtitle: '一句话需求 → 自动生成完整 PRD 文档',
     year: '2025',
     stack: ['Coze', 'Markdown', 'Claude'],
-    effort: '周末 1 天',
     tags: ['Agent 工作流', 'B 端'],
     cover: 'from-[#2A2520] to-[#0F0F0E]',
     image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop',
@@ -149,6 +148,7 @@ export const demos: Demo[] = [
       'PRD 的价值不在"写得多"，在"想清楚"。AI 生成的 PRD 可以当 60 分的底稿，但产品经理必须自己补上业务判断和优先级排序。',
     liveUrl: '',
     sourceUrl: '',
+    customPage: true,
   },
   {
     slug: 'weekly-report',
@@ -156,7 +156,6 @@ export const demos: Demo[] = [
     subtitle: '连接 Git + 日历，自动生成周报草稿',
     year: '2025',
     stack: ['Python', 'GitHub API', 'Claude'],
-    effort: '2 个晚上',
     tags: ['自动化', '效率工具'],
     cover: 'from-[#1A2A1A] to-[#0E0E0C]',
     image: 'https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=800&h=600&fit=crop',
@@ -168,6 +167,7 @@ export const demos: Demo[] = [
       '周报的本质是"让老板知道你做了什么"，而不是"记录你做了什么"。AI 可以帮你回忆和组织，但"哪些事值得写"还是得自己判断。',
     liveUrl: '',
     sourceUrl: '',
+    customPage: true,
   },
   {
     slug: 'interview-analyzer',
@@ -175,7 +175,6 @@ export const demos: Demo[] = [
     subtitle: '上传访谈文字稿，自动提取痛点和洞察',
     year: '2025',
     stack: ['Dify', 'NLP', 'Python'],
-    effort: '周末 1 天',
     tags: ['用户研究', '数据分析'],
     cover: 'from-[#2A1F1A] to-[#0E0E0C]',
     image: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=800&h=600&fit=crop',
@@ -187,5 +186,6 @@ export const demos: Demo[] = [
       '用户访谈的金矿不在"用户说了什么"，在"用户没说什么"。AI 擅长提取显性信息，但隐性需求还是得靠产品经理自己的敏感度。',
     liveUrl: '',
     sourceUrl: '',
+    customPage: true,
   },
 ]

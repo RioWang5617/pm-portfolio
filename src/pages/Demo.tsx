@@ -1,6 +1,29 @@
 import { Link, useParams } from 'react-router-dom'
 import { demos } from '../data/vibecoding'
 import { SidebarNav } from '../components/SidebarNav'
+import PrdReviewer from './PrdReviewer'
+import CaseStudyPage from './CaseStudyPage'
+
+// Case study data imports
+import caseGhostClone from '../data/caseGhostClone'
+import caseExpressMaster from '../data/caseExpressMaster'
+import caseCrawlerMonitor from '../data/caseCrawlerMonitor'
+import caseResumeOptimizer from '../data/caseResumeOptimizer'
+import caseCompetitorRadar from '../data/caseCompetitorRadar'
+import casePrdGenerator from '../data/casePrdGenerator'
+import caseWeeklyReport from '../data/caseWeeklyReport'
+import caseInterviewAnalyzer from '../data/caseInterviewAnalyzer'
+
+const caseStudyMap: Record<string, typeof caseGhostClone> = {
+  'ghost-clone': caseGhostClone,
+  'express-master': caseExpressMaster,
+  'interview-cluster': caseCrawlerMonitor,
+  'resume-optimizer': caseResumeOptimizer,
+  'competitor-radar': caseCompetitorRadar,
+  'prd-generator': casePrdGenerator,
+  'weekly-report': caseWeeklyReport,
+  'interview-analyzer': caseInterviewAnalyzer,
+}
 
 export default function Demo() {
   const { slug } = useParams()
@@ -13,6 +36,16 @@ export default function Demo() {
         <Link to="/vibecoding" className="mt-8 inline-block underline">返回 →</Link>
       </div>
     )
+  }
+
+  // 自定义页面路由
+  if (d.customPage && slug === 'prd-reviewer') {
+    return <PrdReviewer />
+  }
+
+  // 通用案例页路由
+  if (d.customPage && slug && caseStudyMap[slug]) {
+    return <CaseStudyPage data={caseStudyMap[slug]} />
   }
 
   const sidebarSections = [
@@ -34,7 +67,7 @@ export default function Demo() {
           </div>
           <div className="md:col-span-10">
             <p className="text-[0.78rem] uppercase tracking-[0.18em] text-muted mb-6 num">
-              Demo · {d.year} · {d.effort}
+              Demo · {d.year}
             </p>
             <h1 className="font-display text-[2.6rem] sm:text-[3.6rem] md:text-[5rem] leading-[0.98] tracking-tightest text-balance">
               {d.title}
@@ -44,7 +77,6 @@ export default function Demo() {
             </p>
 
             <div className="mt-10 grid grid-cols-2 md:grid-cols-4 gap-6 max-w-2xl">
-              <Meta label="用时" value={d.effort} />
               <Meta label="年份" value={d.year} />
               <Meta label="标签" value={d.tags[0]} />
               <Meta label="源码" value={d.sourceUrl ? (

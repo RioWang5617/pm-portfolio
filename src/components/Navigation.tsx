@@ -1,6 +1,7 @@
-import { NavLink, Link } from 'react-router-dom'
+import { NavLink, Link, useLocation } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { useTheme, type Theme } from '../hooks/useTheme'
+import MonoIcon, { type IconName } from './MonoIcon'
 
 const links = [
   { to: '/works', label: 'Works' },
@@ -9,12 +10,13 @@ const links = [
 ]
 
 const themeOptions: { key: Theme; label: string; icon: string }[] = [
-  { key: 'warm', label: '暖色', icon: '🎨' },
-  { key: 'light', label: '白色', icon: '☀️' },
-  { key: 'dark', label: '暗夜', icon: '🌙' },
+  { key: 'warm', label: '森系', icon: 'leaf' },
+  { key: 'light', label: '白色', icon: 'sun' },
+  { key: 'dark', label: '暗夜', icon: 'moon' },
 ]
 
 export default function Navigation() {
+  const { pathname } = useLocation()
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
   const { theme, setTheme } = useTheme()
@@ -28,7 +30,9 @@ export default function Navigation() {
   return (
     <header
       className={`sticky top-0 z-50 transition-all duration-300 ${
-        scrolled ? 'bg-cream/85 backdrop-blur border-b border-line/60' : 'bg-transparent'
+        scrolled
+          ? 'bg-slate-950/95 backdrop-blur border-b border-slate-700/50'
+          : 'bg-transparent'
       }`}
     >
       <div className="mx-auto max-w-wide px-6 md:px-10 py-4 md:py-5 flex items-center justify-between">
@@ -59,20 +63,19 @@ export default function Navigation() {
           >
             跟我聊
           </button>
-          {/* Theme toggle */}
           <div className="flex items-center gap-1 ml-2 border border-line rounded-full p-1">
             {themeOptions.map((opt) => (
               <button
                 key={opt.key}
                 onClick={() => setTheme(opt.key)}
-                className={`w-7 h-7 rounded-full flex items-center justify-center text-sm transition-all ${
+                className={`w-7 h-7 rounded-full flex items-center justify-center transition-all ${
                   theme === opt.key
                     ? 'bg-ink text-cream scale-110'
                     : 'text-muted hover:text-ink hover:bg-line/50'
                 }`}
                 title={opt.label}
               >
-                {opt.icon}
+                <MonoIcon name={opt.icon as IconName} className="w-4 h-4 !bg-transparent !border-0 !backdrop-blur-none" />
               </button>
             ))}
           </div>
@@ -90,7 +93,7 @@ export default function Navigation() {
       </div>
       {/* Mobile menu */}
       {menuOpen && (
-        <nav className="md:hidden bg-cream/95 backdrop-blur border-b border-line/60 px-6 pb-6">
+        <nav className="md:hidden bg-cream/95 border-line/60 backdrop-blur px-6 pb-6">
           {links.map((l) => (
             <NavLink
               key={l.to}
@@ -111,21 +114,20 @@ export default function Navigation() {
           >
             跟我聊
           </button>
-          {/* Theme toggle mobile */}
           <div className="flex items-center gap-2 pt-4 mt-2 border-t border-line/40">
             <span className="text-[0.82rem] text-muted mr-2">主题</span>
             {themeOptions.map((opt) => (
               <button
                 key={opt.key}
                 onClick={() => setTheme(opt.key)}
-                className={`w-8 h-8 rounded-full flex items-center justify-center text-sm transition-all ${
+                className={`w-8 h-8 rounded-full flex items-center justify-center transition-all ${
                   theme === opt.key
                     ? 'bg-ink text-cream scale-110'
                     : 'text-muted hover:text-ink hover:bg-line/50'
                 }`}
                 title={opt.label}
               >
-                {opt.icon}
+                <MonoIcon name={opt.icon as IconName} className="w-4 h-4 !bg-transparent !border-0 !backdrop-blur-none" />
               </button>
             ))}
           </div>
