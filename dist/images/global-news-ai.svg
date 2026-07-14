@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1E293B"/>
+      <stop offset="100%" style="stop-color:#0F172A"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#bg)"/>
+  <!-- Globe wireframe -->
+  <g transform="translate(400, 250)" opacity="0.3">
+    <circle cx="0" cy="0" r="150" fill="none" stroke="#38BDF8" stroke-width="1.5"/>
+    <ellipse cx="0" cy="0" rx="150" ry="60" fill="none" stroke="#38BDF8" stroke-width="1"/>
+    <ellipse cx="0" cy="0" rx="60" ry="150" fill="none" stroke="#38BDF8" stroke-width="1"/>
+    <ellipse cx="0" cy="0" rx="120" ry="150" fill="none" stroke="#38BDF8" stroke-width="0.8"/>
+    <ellipse cx="0" cy="0" rx="150" ry="120" fill="none" stroke="#38BDF8" stroke-width="0.8"/>
+    <line x1="-150" y1="0" x2="150" y2="0" stroke="#38BDF8" stroke-width="0.8"/>
+    <line x1="0" y1="-150" x2="0" y2="150" stroke="#38BDF8" stroke-width="0.8"/>
+  </g>
+  <!-- Connection nodes -->
+  <g opacity="0.6">
+    <circle cx="200" cy="150" r="8" fill="#38BDF8"/>
+    <circle cx="600" cy="180" r="8" fill="#38BDF8"/>
+    <circle cx="350" cy="120" r="6" fill="#38BDF8"/>
+    <circle cx="500" cy="140" r="6" fill="#38BDF8"/>
+    <circle cx="150" cy="300" r="6" fill="#38BDF8"/>
+    <circle cx="650" cy="320" r="6" fill="#38BDF8"/>
+    <!-- Connection lines -->
+    <line x1="200" y1="150" x2="350" y2="120" stroke="#38BDF8" stroke-width="1" opacity="0.4"/>
+    <line x1="350" y1="120" x2="500" y2="140" stroke="#38BDF8" stroke-width="1" opacity="0.4"/>
+    <line x1="500" y1="140" x2="600" y2="180" stroke="#38BDF8" stroke-width="1" opacity="0.4"/>
+    <line x1="200" y1="150" x2="150" y2="300" stroke="#38BDF8" stroke-width="1" opacity="0.3"/>
+    <line x1="600" y1="180" x2="650" y2="320" stroke="#38BDF8" stroke-width="1" opacity="0.3"/>
+  </g>
+  <!-- News/document icons -->
+  <g transform="translate(280, 350)" opacity="0.4">
+    <rect x="0" y="0" width="40" height="50" rx="3" fill="none" stroke="#38BDF8" stroke-width="1.5"/>
+    <line x1="8" y1="15" x2="32" y2="15" stroke="#38BDF8" stroke-width="1"/>
+    <line x1="8" y1="22" x2="28" y2="22" stroke="#38BDF8" stroke-width="1"/>
+    <line x1="8" y1="29" x2="30" y2="29" stroke="#38BDF8" stroke-width="1"/>
+  </g>
+  <g transform="translate(480, 350)" opacity="0.4">
+    <rect x="0" y="0" width="40" height="50" rx="3" fill="none" stroke="#38BDF8" stroke-width="1.5"/>
+    <line x1="8" y1="15" x2="32" y2="15" stroke="#38BDF8" stroke-width="1"/>
+    <line x1="8" y1="22" x2="28" y2="22" stroke="#38BDF8" stroke-width="1"/>
+    <line x1="8" y1="29" x2="30" y2="29" stroke="#38BDF8" stroke-width="1"/>
+  </g>
+  <!-- AI arrow -->
+  <g transform="translate(380, 370)" opacity="0.5">
+    <path d="M0 0 L20 -20 L40 0" fill="none" stroke="#38BDF8" stroke-width="2"/>
+    <path d="M20 -20 L20 20" fill="none" stroke="#38BDF8" stroke-width="2"/>
+  </g>
+  <!-- Text -->
+  <text x="400" y="480" text-anchor="middle" font-family="system-ui, sans-serif" font-size="28" font-weight="600" fill="#fff" opacity="0.9">全球新闻 AI 协同中台</text>
+  <text x="400" y="520" text-anchor="middle" font-family="system-ui, sans-serif" font-size="16" fill="#94A3B8">多模态微调 · 跨国协同 · 分钟级定稿</text>
+</svg>

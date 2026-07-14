@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#312E81"/>
+      <stop offset="100%" style="stop-color:#1E1B4B"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#bg)"/>
+  <!-- Digital human silhouette -->
+  <g transform="translate(400, 200)" opacity="0.8">
+    <!-- Head -->
+    <circle cx="0" cy="0" r="60" fill="none" stroke="#A78BFA" stroke-width="2"/>
+    <!-- Face features -->
+    <circle cx="-20" cy="-10" r="8" fill="#A78BFA" opacity="0.5"/>
+    <circle cx="20" cy="-10" r="8" fill="#A78BFA" opacity="0.5"/>
+    <path d="M-15 15 Q0 25 15 15" fill="none" stroke="#A78BFA" stroke-width="2" opacity="0.5"/>
+    <!-- Body -->
+    <path d="M0 60 Q0 80 -40 120 L-60 200 L-20 200 L0 140 L20 200 L60 200 L40 120 Q0 80 0 60Z" fill="none" stroke="#A78BFA" stroke-width="2"/>
+    <!-- Arms -->
+    <path d="M-40 120 Q-80 140 -100 180" fill="none" stroke="#A78BFA" stroke-width="2"/>
+    <path d="M40 120 Q80 140 100 180" fill="none" stroke="#A78BFA" stroke-width="2"/>
+  </g>
+  <!-- Screen/Display frame -->
+  <g transform="translate(250, 120)" opacity="0.3">
+    <rect x="0" y="0" width="300" height="200" rx="10" fill="none" stroke="#A78BFA" stroke-width="2"/>
+    <rect x="10" y="10" width="280" height="180" rx="6" fill="#A78BFA" opacity="0.05"/>
+  </g>
+  <!-- Sound waves -->
+  <g transform="translate(400, 380)" opacity="0.4">
+    <path d="M-30 0 Q-20 -15 -10 0 Q0 15 10 0 Q20 -15 30 0" fill="none" stroke="#A78BFA" stroke-width="2"/>
+    <path d="M-40 10 Q-25 -15 -10 10 Q5 35 20 10 Q35 -15 50 10" fill="none" stroke="#A78BFA" stroke-width="1.5" opacity="0.6"/>
+    <path d="M-50 20 Q-30 -20 -10 20 Q10 60 30 20 Q50 -20 70 20" fill="none" stroke="#A78BFA" stroke-width="1" opacity="0.3"/>
+  </g>
+  <!-- Data nodes -->
+  <g opacity="0.5">
+    <circle cx="150" cy="200" r="5" fill="#A78BFA"/>
+    <circle cx="150" cy="230" r="4" fill="#A78BFA"/>
+    <circle cx="150" cy="255" r="3" fill="#A78BFA"/>
+    <line x1="155" y1="200" x2="250" y2="200" stroke="#A78BFA" stroke-width="1" stroke-dasharray="4,4"/>
+    <circle cx="650" cy="200" r="5" fill="#A78BFA"/>
+    <circle cx="650" cy="230" r="4" fill="#A78BFA"/>
+    <circle cx="650" cy="255" r="3" fill="#A78BFA"/>
+    <line x1="550" y1="200" x2="645" y2="200" stroke="#A78BFA" stroke-width="1" stroke-dasharray="4,4"/>
+  </g>
+  <!-- RAG Knowledge base icon -->
+  <g transform="translate(100, 400)" opacity="0.4">
+    <rect x="0" y="0" width="50" height="60" rx="4" fill="none" stroke="#A78BFA" stroke-width="1.5"/>
+    <rect x="5" y="10" width="40" height="8" rx="2" fill="#A78BFA" opacity="0.3"/>
+    <rect x="5" y="22" width="35" height="6" rx="2" fill="#A78BFA" opacity="0.2"/>
+    <rect x="5" y="32" width="38" height="6" rx="2" fill="#A78BFA" opacity="0.2"/>
+    <rect x="5" y="42" width="30" height="6" rx="2" fill="#A78BFA" opacity="0.2"/>
+  </g>
+  <text x="125" y="480" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#A78BFA" opacity="0.5">RAG</text>
+  <!-- Text -->
+  <text x="400" y="510" text-anchor="middle" font-family="system-ui, sans-serif" font-size="28" font-weight="600" fill="#fff" opacity="0.9">AI 数字人大屏</text>
+  <text x="400" y="550" text-anchor="middle" font-family="system-ui, sans-serif" font-size="16" fill="#94A3B8">多模态 · 情感对话 · RAG 知识库</text>
+</svg>

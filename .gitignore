@@ -1,0 +1,33 @@
+# Dependencies
+node_modules/
+
+# Build outputs
+dist/
+build/
+*.egg-info/
+# vite 编译产物（部署时把 dist/* 拷贝到仓库根；新一次构建会重新生成 assets/）
+assets/
+*.tsbuildinfo
+
+# Compiled TS artefacts
+vite.config.js
+vite.config.d.ts
+
+# Env
+.env
+.env.local
+.env.*.local
+!.env.example
+
+# IDE / OS
+.vscode/
+.idea/
+.DS_Store
+
+# Logs
+*.log
+npm-debug.log*
+
+# Local artifacts
+.superpowers/
+README.md.bak
