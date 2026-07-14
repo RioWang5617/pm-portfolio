@@ -7,14 +7,18 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
+    scroll-behavior: smooth;
   }
   body {
-    @apply bg-cream text-ink font-sans;
+    background-color: var(--page);
+    color: var(--ink);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     font-feature-settings: "kern" 1, "liga" 1, "calt" 1, "ss01" 1;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    transition: background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1), color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   }
   ::selection {
-    @apply bg-ink text-cream;
+    background-color: rgba(45, 90, 61, 0.25);
+    color: var(--ink);
   }
 }
 
@@ -22,6 +26,7 @@
   .font-display {
     font-family: 'Songti SC', 'STZhongsong', 'STSong', 'Noto Serif SC', 'Fraunces', Georgia, serif;
     font-feature-settings: "ss01" 1, "ss02" 1, "ss03" 1;
+    letter-spacing: -0.02em;
   }
   .text-balance {
     text-wrap: balance;
@@ -30,7 +35,7 @@
     text-wrap: pretty;
   }
   .editorial-rule {
-    @apply h-px w-full bg-line;
+    @apply h-px w-full bg-gradient-to-r from-transparent via-line to-transparent;
   }
   .num {
     font-feature-settings: "tnum" 1;
@@ -40,13 +45,35 @@
 /* Subtle reveal on scroll */
 .reveal {
   opacity: 0;
-  transform: translateY(16px);
-  transition: opacity 700ms cubic-bezier(.2,.7,.2,1), transform 700ms cubic-bezier(.2,.7,.2,1);
+  transform: translateY(24px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .reveal.is-visible {
   opacity: 1;
   transform: none;
 }
+
+/* Refined UI Utilities */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.hover-lift {
+  transition: transform 300ms cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 300ms ease;
+}
+.hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px -12px rgba(0,0,0,0.15);
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, var(--accent) 0%, var(--muted) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 
 /* 首页浮动光斑 */
 .blob {
@@ -126,7 +153,7 @@
 
 /* Home hero specific styles to match magazine serif layout */
 .home-hero {
-  background-color: var(--bg);
+  background-color: var(--page);
 }
 .home-hero .hero-title {
   display: flex;
@@ -137,7 +164,7 @@
 .hero-title-line {
   display: block;
   font-family: 'Songti SC', 'STZhongsong', 'STSong', 'Noto Serif SC', serif;
-  color: var(--text);
+  color: var(--ink);
   text-wrap: balance;
 }
 .hero-title-small {
@@ -157,7 +184,7 @@
 .hero-subtitle {
   font-family: 'Noto Serif SC', serif;
   font-size: 2rem;
-  color: var(--text);
+  color: var(--ink);
   max-width: 56ch;
   text-align: left;
 }
@@ -189,7 +216,7 @@
 .cluster-mid-small { margin: 0 -16px; display:flex; flex-direction:column; gap:0; align-items:center; justify-content:space-between; z-index: 20; height: 192px; transform: translateY(0.5rem); }
 .cluster-mid-small span { display:inline-block; font-family: 'Songti SC', 'STZhongsong', 'STSong', serif; font-size:45px; line-height:1 }
 
-.structured-subtitle { margin-top: 1.8rem; font-family: 'Noto Serif SC', serif; color: var(--text); font-size:61px; max-width:56ch; }
+.structured-subtitle { margin-top: 1.8rem; font-family: 'Noto Serif SC', serif; color: var(--ink); font-size:61px; max-width:56ch; }
 
 /* 小屏幕适配：保留相对比例但减少绝对尺寸 */
 @media (max-width: 900px) {
@@ -217,7 +244,7 @@
 ::-webkit-scrollbar-thumb {
   background: var(--line);
   border-radius: 8px;
-  border: 2px solid var(--bg);
+  border: 2px solid var(--page);
 }
 ::-webkit-scrollbar-thumb:hover {
   background: var(--muted);

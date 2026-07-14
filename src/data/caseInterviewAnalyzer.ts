@@ -7,6 +7,7 @@ const caseData: CaseStudyData = {
   description: '将用户访谈文字稿结构化分析，自动提取关键痛点、需求与优先级，节省整理时间。',
   year: '2025',
   stack: ['Dify', 'NLP', 'Python'],
+  coverImage: '/images/prototypes/interview-analyzer-01-list.png',
   coverQuote: '用户的声音是最真实的市场信号，但只有经过系统化的提炼，才能从噪声中听见真正的洞察。',
 
   motivation: {

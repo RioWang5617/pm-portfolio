@@ -13,6 +13,7 @@ import caseCompetitorRadar from '../data/caseCompetitorRadar'
 import casePrdGenerator from '../data/casePrdGenerator'
 import caseWeeklyReport from '../data/caseWeeklyReport'
 import caseInterviewAnalyzer from '../data/caseInterviewAnalyzer'
+import caseContractReviewer from '../data/caseContractReviewer'
 
 const caseStudyMap: Record<string, typeof caseGhostClone> = {
   'ghost-clone': caseGhostClone,
@@ -23,6 +24,7 @@ const caseStudyMap: Record<string, typeof caseGhostClone> = {
   'prd-generator': casePrdGenerator,
   'weekly-report': caseWeeklyReport,
   'interview-analyzer': caseInterviewAnalyzer,
+  'contract-reviewer': caseContractReviewer,
 }
 
 export default function Demo() {

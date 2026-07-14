@@ -7,6 +7,7 @@ const caseData: CaseStudyData = {
   description: '通过多轮结构化追问将模糊需求转化为标准化 PRD，帮助产品经理更快落地想法。',
   year: '2025',
   stack: ['Coze', 'Markdown', 'Claude'],
+  coverImage: '/images/prototypes/prd-generator-01-input.png',
   coverQuote:
     '「PRD 的价值不在"写得多"，在"想清楚"。AI 生成的 PRD 可以当 60 分的底稿——但那 60 分，是帮你把脑子里模糊的想法变成结构化的思考。」',
 

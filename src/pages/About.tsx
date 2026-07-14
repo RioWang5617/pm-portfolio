@@ -2,14 +2,14 @@ import { profile } from '../data/profile'
 import ResumeViewer from '../components/ResumeViewer'
 import { SidebarNav } from '../components/SidebarNav'
 
-const RESUME_URL =
-  'https://ivlrszbwekymbydhnlre.supabase.co/storage/v1/object/public/resume/wang-tianyang-resume.pdf'
+const RESUME_URL = '/resume.pdf'
 
 export default function About() {
   const sidebarSections = [
     { id: 'about', label: 'About' },
     { id: 'experience', label: '经历' },
     { id: 'skills', label: '技能' },
+    { id: 'education', label: '教育' },
     { id: 'resume', label: 'Resume' },
   ]
 
@@ -136,6 +136,35 @@ export default function About() {
                   </div>
                 </div>
               ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 教育经历 */}
+      <section id="education" className="mx-auto max-w-wide px-6 md:px-10 py-16 md:py-24 border-t border-line/60 reveal">
+        <div className="grid md:grid-cols-12 gap-8">
+          <div className="md:col-span-2">
+            <p className="text-[0.72rem] uppercase tracking-[0.22em] text-muted">
+              Education
+            </p>
+          </div>
+          <div className="md:col-span-10">
+            <h2 className="font-display text-[2rem] md:text-[2.6rem] tracking-tightest leading-[1.1] text-balance">
+              <em>教育经历</em>
+            </h2>
+            <div className="mt-10 grid md:grid-cols-12 gap-4 md:gap-8">
+              <div className="md:col-span-3">
+                <p className="text-[0.85rem] text-muted num">{profile.education.period}</p>
+              </div>
+              <div className="md:col-span-9">
+                <h3 className="font-display text-[1.3rem] md:text-[1.5rem] tracking-tightest">
+                  {profile.education.school}
+                </h3>
+                <p className="mt-1 text-[0.95rem] text-muted">
+                  {profile.education.degree} · {profile.education.major}
+                </p>
+              </div>
             </div>
           </div>
         </div>

@@ -31,14 +31,14 @@ export default function Navigation() {
     <header
       className={`sticky top-0 z-50 transition-all duration-300 ${
         scrolled
-          ? 'bg-slate-950/95 backdrop-blur border-b border-slate-700/50'
+          ? 'bg-page/80 backdrop-blur-md border-b border-line/30 shadow-sm'
           : 'bg-transparent'
       }`}
     >
       <div className="mx-auto max-w-wide px-6 md:px-10 py-4 md:py-5 flex items-center justify-between">
         <Link
           to="/"
-          className="font-display text-[1.3rem] md:text-[1.55rem] tracking-tightest leading-none italic"
+          className="font-display text-[1.3rem] md:text-[1.55rem] tracking-tightest leading-none italic hover:text-accent transition-colors"
         >
           Tianyang<span className="text-accent">.</span>
         </Link>
@@ -93,7 +93,7 @@ export default function Navigation() {
       </div>
       {/* Mobile menu */}
       {menuOpen && (
-        <nav className="md:hidden bg-cream/95 border-line/60 backdrop-blur px-6 pb-6">
+        <nav className="md:hidden bg-page/95 border-line/60 backdrop-blur px-6 pb-6">
           {links.map((l) => (
             <NavLink
               key={l.to}

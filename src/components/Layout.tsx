@@ -31,7 +31,7 @@ export default function Layout() {
   }, [pathname])
 
     return (
-      <div className="min-h-screen flex flex-col bg-cream text-ink">
+      <div className="min-h-screen flex flex-col bg-page text-ink">
       <Navigation />
       <main className="flex-1">
         <Outlet />

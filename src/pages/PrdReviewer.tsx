@@ -133,11 +133,6 @@ export default function PrdReviewer() {
             alt="AI 合同审查助手首页"
             className="absolute inset-0 w-full h-full object-cover object-top"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-black/10 to-transparent flex items-end justify-center pb-16">
-            <p className="font-display italic text-muted/70 text-[1.2rem] md:text-[1.8rem] leading-snug max-w-prose text-center px-8">
-              「让每个人都能获得专业级的合同审查能力」
-            </p>
-          </div>
         </div>
       </div>
 
@@ -433,8 +428,8 @@ export default function PrdReviewer() {
             </div>
           </div>
 
-          <div className="mt-10 p-8 border border-line rounded-lg bg-gradient-to-br from-[#0F0F0E] to-[#1A1A18]">
-            <p className="font-display text-[1.2rem] md:text-[1.4rem] tracking-tight leading-[1.5] text-muted/70">
+          <div className="mt-10 p-8 border-l-2 border-ink/30 pl-6">
+            <p className="font-display italic text-[1.2rem] md:text-[1.4rem] tracking-tight leading-[1.5] text-ink/80">
               「做合同审查最大的收获是理解了"AI 的边界"——它能帮你发现问题，但不能替你做决定。产品设计的核心不是让 AI 更聪明，而是让用户在 AI 的辅助下做出更好的判断。」
             </p>
           </div>

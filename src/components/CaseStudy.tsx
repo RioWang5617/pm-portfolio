@@ -8,7 +8,7 @@ export type SidebarSection = { id: string; label: string }
 /* ─── Section ─── */
 export function Section({ id, title, eyebrow, children }: { id?: string; title: string; eyebrow: string; children: React.ReactNode }) {
   return (
-    <section id={id} className="mx-auto max-w-wide px-6 md:px-10 py-14 md:py-20 border-t border-line/60">
+    <section id={id} className="mx-auto max-w-wide px-6 md:px-10 py-14 md:py-20">
       <div className="grid md:grid-cols-12 gap-8">
         <div className="md:col-span-2">
           <p className="font-mono text-[0.78rem] text-muted num">{eyebrow}</p>

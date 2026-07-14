@@ -1,4 +1,5 @@
 import { Link, useParams } from 'react-router-dom'
+import { useState, useEffect, useCallback } from 'react'
 import { works } from '../data/works'
 import { SidebarNav } from '../components/SidebarNav'
 
@@ -64,20 +65,24 @@ export default function CaseStudy() {
         </div>
       </header>
 
-      {/* COVER */}
+      {/* COVER / CAROUSEL */}
       <div className="mx-auto max-w-wide px-6 md:px-10 mb-20 md:mb-28 reveal">
-        <div className={`aspect-[21/9] w-full rounded-sm relative overflow-hidden ${w.image ? '' : `bg-gradient-to-br ${w.cover}`}`}>
-          {w.image ? (
-            <img src={w.image} alt={w.title} className="absolute inset-0 w-full h-full object-cover" />
-          ) : (
-            <div className={`absolute inset-0 bg-gradient-to-br ${w.cover}`} />
-          )}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent flex items-center justify-center">
-            <p className="font-display italic text-cream/90 text-[1.2rem] md:text-[1.8rem] leading-snug max-w-prose text-center px-8">
-              「{w.intro}」
-            </p>
+        {w.images && w.images.length > 0 ? (
+          <Carousel images={w.images} />
+        ) : (
+          <div className={`aspect-[21/9] w-full rounded-sm relative overflow-hidden ${w.image ? '' : `bg-gradient-to-br ${w.cover}`}`}>
+            {w.image ? (
+              <img src={w.image} alt={w.title} className="absolute inset-0 w-full h-full object-cover" />
+            ) : (
+              <div className={`absolute inset-0 bg-gradient-to-br ${w.cover}`} />
+            )}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent flex items-center justify-center">
+              <p className="font-display italic text-cream/90 text-[1.2rem] md:text-[1.8rem] leading-snug max-w-prose text-center px-8">
+                「{w.intro}」
+              </p>
+            </div>
           </div>
-        </div>
+        )}
       </div>
 
       {/* INTRO */}
@@ -138,7 +143,7 @@ export default function CaseStudy() {
       </Section>
 
       {/* NEXT */}
-      <section className="mx-auto max-w-wide px-6 md:px-10 py-20 md:py-28 border-t border-line/60">
+      <section className="mx-auto max-w-wide px-6 md:px-10 py-20 md:py-28">
         <Link
           to="/works"
           className="font-display text-[1.4rem] md:text-[1.8rem] tracking-tightest hover:italic transition-all"
@@ -147,6 +152,74 @@ export default function CaseStudy() {
         </Link>
       </section>
     </article>
+  )
+}
+
+/* ─── Carousel ─── */
+function Carousel({ images }: { images: { src: string; alt: string; caption: string }[] }) {
+  const [current, setCurrent] = useState(0)
+  const [paused, setPaused] = useState(false)
+
+  const next = useCallback(() => setCurrent((c) => (c + 1) % images.length), [images.length])
+  const prev = useCallback(() => setCurrent((c) => (c - 1 + images.length) % images.length), [images.length])
+
+  useEffect(() => {
+    if (paused) return
+    const timer = setInterval(next, 4000)
+    return () => clearInterval(timer)
+  }, [next, paused])
+
+  return (
+    <div
+      className="relative rounded-sm overflow-hidden group"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+    >
+      {/* Image */}
+      <div className="aspect-[21/9] w-full relative">
+        {images.map((img, i) => (
+          <div
+            key={img.src}
+            className={`absolute inset-0 transition-opacity duration-700 ${i === current ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+          >
+            <img src={img.src} alt={img.alt} className="w-full h-full object-cover" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+          </div>
+        ))}
+      </div>
+
+      {/* Caption */}
+      <div className="absolute bottom-0 left-0 right-0 px-8 pb-8 pt-16">
+        <p className="font-display italic text-cream/90 text-[1.1rem] md:text-[1.4rem] leading-snug max-w-prose">
+          {images[current].caption}
+        </p>
+      </div>
+
+      {/* Arrows */}
+      <button
+        onClick={prev}
+        className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/40 backdrop-blur text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-black/60"
+      >
+        ←
+      </button>
+      <button
+        onClick={next}
+        className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/40 backdrop-blur text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-black/60"
+      >
+        →
+      </button>
+
+      {/* Dots */}
+      <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2">
+        {images.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => setCurrent(i)}
+            className={`w-2 h-2 rounded-full transition-all ${i === current ? 'bg-cream w-6' : 'bg-cream/40 hover:bg-cream/60'}`}
+          />
+        ))}
+      </div>
+    </div>
   )
 }
 
@@ -162,7 +235,7 @@ function Section({
   children: React.ReactNode
 }) {
   return (
-    <section id={id} className="mx-auto max-w-wide px-6 md:px-10 py-14 md:py-20 border-t border-line/60">
+    <section id={id} className="mx-auto max-w-wide px-6 md:px-10 py-14 md:py-20">
       <div className="grid md:grid-cols-12 gap-8">
         <div className="md:col-span-2">
           <p className="font-mono text-[0.78rem] text-muted num">{eyebrow}</p>

@@ -17,10 +17,18 @@ export default function Vibecoding() {
       <p className="text-[1rem] md:text-[1.1rem] text-muted max-w-prose mb-12">
         因服务器资源有限，无法承载作品，本页面只做展示。
       </p>
-      <div className="space-y-8 md:space-y-12">
-        {demos.map((d, i) => (
-          <DemoCard key={d.slug} demo={d} index={i} />
-        ))}
+      <div className="mt-12">
+        {demos.length === 0 ? (
+          <div className="py-24 text-center">
+            <p className="text-[1.1rem] text-muted font-medium">暂无演示，正在打磨中...</p>
+          </div>
+        ) : (
+          <div className="space-y-8 md:space-y-12">
+            {demos.map((d, i) => (
+              <DemoCard key={d.slug} demo={d} index={i} />
+            ))}
+          </div>
+        )}
       </div>
     </div>
   )

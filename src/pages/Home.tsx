@@ -53,7 +53,7 @@ export default function Home() {
               {/* 按钮组（保持原有行为与样式） */}
               <div className="hero-cta mt-8 flex items-center gap-4 w-full">
                 <a
-                  href="https://ivlrszbwekymbydhnlre.supabase.co/storage/v1/object/public/resume/wang-tianyang-resume.pdf"
+                  href="/resume.pdf"
                   target="_blank"
                   rel="noreferrer"
                   className="group ml-auto inline-flex items-center gap-3 px-6 py-3 rounded-full text-[0.95rem] tracking-wide border border-ink text-ink hover:bg-ink hover:text-cream transition-all duration-300 anim-bounce-in"

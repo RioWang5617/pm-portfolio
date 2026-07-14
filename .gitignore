@@ -1,14 +1,17 @@
 # Dependencies
 node_modules/
-.pnpm-store/
-__pycache__/
-*.pyc
-.venv/
-venv/
 
 # Build outputs
+dist/
 build/
 *.egg-info/
+# vite 编译产物（部署时把 dist/* 拷贝到仓库根；新一次构建会重新生成 assets/）
+assets/
+*.tsbuildinfo
+
+# Compiled TS artefacts
+vite.config.js
+vite.config.d.ts
 
 # Env
 .env
@@ -16,7 +19,7 @@ build/
 .env.*.local
 !.env.example
 
-# IDE
+# IDE / OS
 .vscode/
 .idea/
 .DS_Store
@@ -24,26 +27,7 @@ build/
 # Logs
 *.log
 npm-debug.log*
-pnpm-debug.log*
 
-# HF
-README.md.bak
-
-# Python
-.pytest_cache/
-.mypy_cache/
-.ruff_cache/
-
-# Codex superpowers (local dev artifacts)
+# Local artifacts
 .superpowers/
-public/resume.pdf
-
-# TypeScript build info
-*.tsbuildinfo
-vite.config.js
-vite.config.d.ts
-.env.local
-
-# Build outputs (root copies for HF Static)
-dist/
-*.jpg
+README.md.bak

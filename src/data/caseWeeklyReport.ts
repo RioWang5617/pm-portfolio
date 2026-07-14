@@ -7,6 +7,7 @@ const caseData: CaseStudyData = {
   description: '自动汇总本周工作数据，生成适合管理层阅读的周报草稿，减少重复记忆成本。',
   year: '2025',
   stack: ['Python', 'GitHub API', 'Claude'],
+  coverImage: '/images/prototypes/weekly-report-01-overview.png',
 
   coverQuote:
     '「每周五下午最痛苦的事就是写周报，明明做了很多但就是想不起来。那就让 AI 帮你回忆。」',

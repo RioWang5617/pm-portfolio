@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { useState } from 'react'
 import { SidebarNav } from '../components/SidebarNav'
 import {
   Section,
@@ -19,6 +20,7 @@ export interface CaseStudyData {
   description: string
   year: string
   stack: string[]
+  coverImage?: string
   coverQuote: string
   motivation: {
     paragraphs: string[]
@@ -116,11 +118,21 @@ export default function CaseStudyPage({ data }: { data: CaseStudyData }) {
 
       {/* COVER */}
       <div className="mx-auto max-w-wide px-6 md:px-10 mb-20 md:mb-28 reveal">
-        <div className="aspect-[21/9] w-full rounded-sm bg-gradient-to-br from-[#1A1A18] to-[#0F0F0E] flex items-center justify-center">
-          <p className="font-display italic text-cream/90 text-[1.2rem] md:text-[1.8rem] leading-snug max-w-prose text-center px-8">
-            {data.coverQuote}
-          </p>
-        </div>
+        {data.coverImage ? (
+          <div className="aspect-[21/9] w-full rounded-sm overflow-hidden bg-gradient-to-br from-[#1A1A18] to-[#0F0F0E] relative">
+            <img
+              src={data.coverImage}
+              alt={data.title}
+              className="absolute inset-0 w-full h-full object-cover"
+            />
+          </div>
+        ) : (
+          <div className="aspect-[21/9] w-full rounded-sm bg-gradient-to-br from-[#1A1A18] to-[#0F0F0E] flex items-center justify-center">
+            <p className="font-display italic text-cream/90 text-[1.2rem] md:text-[1.8rem] leading-snug max-w-prose text-center px-8">
+              {data.coverQuote}
+            </p>
+          </div>
+        )}
       </div>
 
       {/* WHY */}
@@ -191,26 +203,9 @@ export default function CaseStudyPage({ data }: { data: CaseStudyData }) {
       <Section id="prototypes" title="原型设计" eyebrow={data.extraSection ? '05' : '05'}>
         <div className="space-y-8">
           <p>以下是产品的核心页面设计，展示关键交互流程和信息架构：</p>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="space-y-10">
             {data.prototypes.map((p) => (
-              <div key={p.label} className="border border-line rounded-lg overflow-hidden hover:border-ink/30 transition-colors">
-                {p.image ? (
-                  <div className="aspect-[16/10] bg-gradient-to-br from-[#1A1A18] to-[#0F0F0E]">
-                    <img src={p.image} alt={p.label} className="w-full h-full object-cover" />
-                  </div>
-                ) : (
-                  <div className="aspect-[16/10] bg-gradient-to-br from-[#1A1A18] to-[#0F0F0E] flex items-center justify-center">
-                    <div className="text-center px-6">
-                      <div className="mb-2"><MonoIcon name="file" className="w-12 h-12 text-cream/40" /></div>
-                      <p className="text-cream/60 text-[0.85rem] font-mono">{p.label}</p>
-                    </div>
-                  </div>
-                )}
-                <div className="p-5">
-                  <h4 className="font-display text-[1.05rem] tracking-tight mb-2">{p.label}</h4>
-                  <p className="text-[0.88rem] text-muted leading-[1.6]">{p.desc}</p>
-                </div>
-              </div>
+              <PrototypeCard key={p.label} prototype={p} />
             ))}
           </div>
         </div>
@@ -290,8 +285,8 @@ export default function CaseStudyPage({ data }: { data: CaseStudyData }) {
               ))}
             </div>
           </div>
-          <div className="mt-10 p-8 border border-line rounded-lg bg-gradient-to-br from-[#0F0F0E] to-[#1A1A18]">
-            <p className="font-display text-[1.2rem] md:text-[1.4rem] tracking-tight leading-[1.5] text-cream/90">
+          <div className="mt-10 p-8 border-l-2 border-ink/30 pl-6">
+            <p className="font-display italic text-[1.2rem] md:text-[1.4rem] tracking-tight leading-[1.5] text-ink/80">
               {data.closingQuote}
             </p>
           </div>
@@ -299,11 +294,66 @@ export default function CaseStudyPage({ data }: { data: CaseStudyData }) {
       </Section>
 
       {/* BACK */}
-      <section className="mx-auto max-w-wide px-6 md:px-10 py-20 border-t border-line/60">
+      <section className="mx-auto max-w-wide px-6 md:px-10 py-20">
         <Link to="/vibecoding" className="font-display text-[1.4rem] md:text-[1.8rem] tracking-tightest hover:italic transition-all">
           ← 返回所有 demo
         </Link>
       </section>
     </article>
+  )
+}
+
+/* ─── Prototype Card with Lightbox ─── */
+function PrototypeCard({ prototype }: { prototype: { label: string; desc: string; image?: string } }) {
+  const [open, setOpen] = useState(false)
+
+  return (
+    <>
+      <div className="border border-line rounded-lg overflow-hidden hover:border-ink/30 transition-colors">
+        {prototype.image ? (
+          <div
+            className="aspect-[16/10] bg-gradient-to-br from-[#1A1A18] to-[#0F0F0E] cursor-zoom-in group/img relative"
+            onClick={() => setOpen(true)}
+          >
+            <img src={prototype.image} alt={prototype.label} className="w-full h-full object-cover transition-transform duration-300 group-hover/img:scale-[1.02]" />
+            <div className="absolute inset-0 bg-black/0 group-hover/img:bg-black/10 transition-colors flex items-center justify-center">
+              <span className="opacity-0 group-hover/img:opacity-100 transition-opacity bg-black/50 text-white text-[0.8rem] px-3 py-1.5 rounded-full backdrop-blur-sm">
+                点击查看大图
+              </span>
+            </div>
+          </div>
+        ) : (
+          <div className="aspect-[16/10] bg-gradient-to-br from-[#1A1A18] to-[#0F0F0E] flex items-center justify-center">
+            <div className="text-center px-6">
+              <div className="mb-2"><MonoIcon name="file" className="w-12 h-12 text-cream/40" /></div>
+              <p className="text-cream/60 text-[0.85rem] font-mono">{prototype.label}</p>
+            </div>
+          </div>
+        )}
+        <div className="p-5">
+          <h4 className="font-display text-[1.05rem] tracking-tight mb-2">{prototype.label}</h4>
+          <p className="text-[0.88rem] text-muted leading-[1.6]">{prototype.desc}</p>
+        </div>
+      </div>
+
+      {/* Lightbox */}
+      {open && prototype.image && (
+        <div
+          className="fixed inset-0 z-[100] bg-black/80 backdrop-blur-sm flex items-center justify-center p-6 cursor-zoom-out"
+          onClick={() => setOpen(false)}
+        >
+          <div className="relative max-w-[90vw] max-h-[90vh]">
+            <img src={prototype.image} alt={prototype.label} className="max-w-full max-h-[85vh] rounded-lg shadow-2xl object-contain" />
+            <p className="text-center text-white/80 text-[0.9rem] mt-4 font-display">{prototype.label}</p>
+          </div>
+          <button
+            onClick={() => setOpen(false)}
+            className="absolute top-6 right-6 w-10 h-10 rounded-full bg-white/10 backdrop-blur text-white flex items-center justify-center hover:bg-white/20 transition-colors text-xl"
+          >
+            ×
+          </button>
+        </div>
+      )}
+    </>
   )
 }

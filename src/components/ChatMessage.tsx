@@ -21,7 +21,7 @@ export function ChatMessage({ message }: Props) {
       )}
       <div
         className={`max-w-[85%] rounded-2xl px-4 py-3 ${
-          isUser ? 'bg-ink text-cream' : 'bg-line/40 text-ink'
+          isUser ? 'bg-ink text-cream' : 'bg-card-bg text-ink'
         }`}
       >
         <div className="text-[0.95rem] leading-[1.5] whitespace-pre-wrap">

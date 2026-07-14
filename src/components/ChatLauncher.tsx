@@ -34,7 +34,7 @@ export function ChatLauncher() {
     <>
       <button
         onClick={() => setOpen(true)}
-        className={`fixed bottom-6 right-6 z-40 w-14 h-14 rounded-full shadow-lg hover:shadow-xl transition-all overflow-hidden ${
+        className={`fixed bottom-6 right-6 z-40 w-14 h-14 rounded-full shadow-lg hover:shadow-xl transition-all overflow-hidden bg-page border-2 border-line ${
           pulse && !open ? 'animate-pulse' : ''
         }`}
         aria-label="跟我聊"

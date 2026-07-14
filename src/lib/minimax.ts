@@ -82,7 +82,19 @@ export async function streamChat(
 
     if (!resp.ok) {
       const errText = await resp.text().catch(() => '')
-      onEvent({ type: 'error', content: `API 错误 ${resp.status}: ${errText.slice(0, 200)}` })
+      // 检测欠费/余额不足，统一用友好提示，不暴露原始错误
+      const lower = errText.toLowerCase()
+      if (
+        errText.includes('欠费') ||
+        errText.includes('余额不足') ||
+        errText.includes('insufficient') ||
+        errText.includes('quota') ||
+        lower.includes('balance')
+      ) {
+        onEvent({ type: 'error', content: '模型以欠费 5个小时后重试' })
+        return
+      }
+      onEvent({ type: 'error', content: `API 错误 ${resp.status}：请稍后再试` })
       return
     }
 
@@ -117,6 +129,11 @@ export async function streamChat(
     }
     onEvent({ type: 'done' })
   } catch (e: any) {
-    onEvent({ type: 'error', content: e?.message || '网络错误' })
+    const msg = String(e?.message || '')
+    if (msg.includes('欠费') || msg.includes('余额不足') || msg.includes('insufficient')) {
+      onEvent({ type: 'error', content: '模型以欠费 5个小时后重试' })
+    } else {
+      onEvent({ type: 'error', content: '网络错误，请稍后再试' })
+    }
   }
 }

@@ -7,6 +7,7 @@ const caseData: CaseStudyData = {
   description: '通过 AI 逐段诊断简历问题，输出可执行优化建议，让简历在 3 秒内抓住 HR 目光。',
   year: '2025',
   stack: ['Dify', 'PDF.js', 'Claude'],
+  coverImage: '/images/prototypes/resume-optimizer-01-upload.png',
 
   coverQuote: '简历优化的核心不是"写得好"，是"让 HR 3 秒内看到亮点"。',
 

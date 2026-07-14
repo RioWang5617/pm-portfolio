@@ -1,8 +1,8 @@
 # 项目说明文档
 
-**项目名称**：王天阳个人作品集网站  
-**线上地址**：https://qq1833411196-jianli.hf.space  
-**技术栈**：React + Vite + FastAPI + Supabase + MiniMax + HF Spaces
+**项目名称**：王天阳个人作品集网站
+**线上地址**：https://qq1833411196-jianli.hf.space
+**技术栈**：React + Vite + TypeScript + Tailwind + MiniMax + HuggingFace Spaces (Static)
 
 ---
 
@@ -10,205 +10,149 @@
 
 ```
 pm-portfolio/
-├── Dockerfile              # 多阶段构建：Node构建前端 → Python运行
-├── nginx.conf              # Nginx 配置（静态文件 + /api/ 反代）
-├── package.json            # 前端依赖
-├── index.html              # SPA 入口
-│
-├── backend/                # FastAPI 后端
-│   ├── main.py             # 应用入口
-│   ├── config.py           # 环境变量配置
-│   ├── models.py           # Pydantic 数据模型
-│   ├── api/
-│   │   ├── chat.py         # POST /api/chat（AI 对话 SSE）
-│   │   └── admin.py        # POST /api/admin/reindex（RAG 重建）
-│   ├── lib/
-│   │   ├── minimax.py      # MiniMax LLM/Embedding 客户端
-│   │   ├── supabase.py     # Supabase REST 客户端
-│   │   └── pdf.py          # PDF 文本提取
-│   └── rag/
-│       ├── chunker.py      # 文本切块
-│       ├── sources.py      # 数据源处理
-│       ├── ingest.py       # RAG 入库
-│       ├── retriever.py    # 向量检索
-│       └── prompts.py      # AI 人格 prompt
-│
-├── src/                    # React 前端
-│   ├── main.tsx            # 入口
-│   ├── App.tsx             # 路由表
-│   ├── components/         # UI 组件
+├── index.html                  # SPA 入口（构建产物，commit 到 git）
+├── assets/                     # vite build 产物（部署时拷贝到根目录）
+├── package.json
+├── vite.config.ts              # Vite 配置（含 MiniMax API key 注入）
+├── tailwind.config.js          # 主题色板（page/ink/line/card-bg 等 CSS 变量）
+├── postcss.config.js
+├── tsconfig*.json
+├── vitest.config.ts
+├── public/                     # 静态资源
+│   ├── favicon.svg
+│   ├── avatar.png              # AI 替身头像
+│   ├── resume.pdf              # 简历 PDF
+│   └── images/                 # 案例封面图（SVG + PNG）
+├── src/
+│   ├── main.tsx                # React 入口
+│   ├── App.tsx                 # 路由表
+│   ├── index.css               # Tailwind + CSS 变量 + 动画
+│   ├── components/             # 12 个 UI 组件
 │   │   ├── Layout.tsx
 │   │   ├── Navigation.tsx
 │   │   ├── Footer.tsx
-│   │   ├── ResumeViewer.tsx    # PDF.js 渲染简历
-│   │   ├── ChatPanel.tsx       # AI 对话面板
+│   │   ├── CaseStudyCard.tsx
+│   │   ├── DemoCard.tsx
+│   │   ├── ResumeViewer.tsx    # ⭐ PDF.js 渲染简历成可滚动 canvas
+│   │   ├── ChatLauncher.tsx
+│   │   ├── ChatPanel.tsx
 │   │   ├── ChatInput.tsx
 │   │   ├── ChatMessage.tsx
-│   │   └── ...
-│   ├── pages/              # 页面
-│   │   ├── Home.tsx        # 首页
-│   │   ├── Works.tsx       # 作品列表
-│   │   ├── CaseStudy.tsx   # 作品详情
-│   │   ├── Vibecoding.tsx  # Demo 列表
-│   │   ├── Demo.tsx        # Demo 详情
-│   │   └── About.tsx       # 关于 + 简历
-│   ├── data/               # 静态数据
-│   │   ├── profile.ts      # 个人信息
-│   │   ├── works.ts        # 作品数据
-│   │   └── vibecoding.ts   # Demo 数据
-│   └── hooks/              # 自定义 hooks
-│       ├── useChat.ts
-│       ├── useChatHistory.ts
-│       └── useStreaming.ts
-│
-├── scripts/
-│   └── start.sh            # 容器启动脚本（uvicorn + nginx）
-│
-└── tests/                  # 后端测试
-    └── *.py
+│   │   ├── ChatSuggestions.tsx
+│   │   └── ChatSources.tsx
+│   ├── pages/                  # 6 个路由
+│   │   ├── Home.tsx
+│   │   ├── Works.tsx
+│   │   ├── CaseStudy.tsx
+│   │   ├── CaseStudyPage.tsx   # /works/:slug 作品详情
+│   │   ├── Vibecoding.tsx
+│   │   ├── Demo.tsx
+│   │   ├── About.tsx
+│   │   ├── PrdReviewer.tsx
+│   │   └── IndexRedirect.tsx
+│   ├── data/                   # TypeScript 源数据
+│   │   ├── profile.ts
+│   │   ├── works.ts
+│   │   ├── vibecoding.ts
+│   │   └── cases/              # 8 个原型设计 case data
+│   ├── hooks/
+│   │   ├── useChat.ts
+│   │   ├── useChatHistory.ts
+│   │   ├── useStreaming.ts
+│   │   ├── useTheme.ts         # 三套主题切换 + CSS 变量
+│   │   └── useInView.ts
+│   ├── lib/
+│   │   └── minimax.ts          # MiniMax Chat Completions SSE client
+│   └── test/
+│       └── setup.ts
+├── README.md
+├── PROJECT.md                  # 本文件
+├── .env.example                # 环境变量模板
+├── .gitignore
+└── dist/                       # vite build 临时输出（不进 git）
 ```
 
 ---
 
-## 二、部署到 Hugging Face Spaces
+## 二、技术决策
 
-### 推送流程
+### 1. 为什么是纯前端 + HF Static？
+
+- 没有后端依赖 → 部署成本最低（HF Static 完全免费）
+- 数据全在 `.ts` 文件里 → 改文案不需要重建后端
+- MiniMax API 允许前端直连 + CORS → 不用代理
+
+### 2. 为什么不用 Docker SDK？
+
+- Docker SDK 需要维护 Dockerfile + nginx.conf + start.sh，启动慢（冷启动 30s+），内存占用大
+- Static SDK 部署即上传静态文件，零运行时开销
+- 单页 React 应用天然适合 Static
+
+### 3. 主题系统设计
+
+```
+useTheme.ts → 设置 document.documentElement.style 的 CSS 变量
+   ↓
+src/index.css :root 声明同名变量
+   ↓
+tailwind.config.js 用 rgba(var(--xxx-rgb), <alpha-value>) 引用
+```
+
+**坑点**：modern `rgb(var(--xxx-rgb) / <alpha-value>)` 语法跟逗号分隔的 `--xxx-rgb: 'r, g, b'` 变量不兼容（CSS 解析失败，回退到 `rgba(0,0,0,0)` 透明）。必须用 classic `rgba(var(--xxx-rgb), <alpha-value>)`。
+
+### 4. PDF 简历渲染
+
+- 用 `pdfjs-dist` 的 `?url` import 把 worker 打进 bundle
+- `getDocument` → 逐页 `getPage` → 渲染到 `<canvas>`，支持缩放控制
+- 桌面 `scale = 1.5 * dpr`，移动 `1.2 * dpr`（clamp 到 2 防 4K 屏过载）
+
+### 5. AI 对话（SSE 流式）
+
+- 用 `fetch` 直连 `https://api.minimaxi.com/v1/chat/completions`
+- 手动解析 `data: {...}\n\n` SSE 协议
+- 过滤 `minimax-m3` API key 欠费 / 模型下架等错误
+- 历史消息走 `localStorage`，刷新不丢
+
+---
+
+## 三、本地开发
 
 ```bash
-# 1. 配置 HF remote（只需一次）
-git remote add hf https://qq1833411196:<YOUR_HF_TOKEN>@huggingface.co/spaces/qq1833411196/jianli
-
-# 2. 推送代码（自动触发构建）
-git push hf main
-
-# 3. 等待构建完成（约 5-10 分钟）
-# 查看构建日志：https://huggingface.co/spaces/qq1833411196/jianli → Logs tab
+cp .env.example .env.local
+# 填入 VITE_MINIMAX_API_KEY
+npm install
+npm run dev
+# → http://localhost:5173
 ```
 
-### HF Space 工作原理
-
-1. **推送代码** → HF 自动检测 `Dockerfile` → 触发 Docker 构建
-2. **Docker 多阶段构建**：
-   - Stage 1（Node 22）：`pnpm install` → `pnpm build` → 生成 `dist/`
-   - Stage 2（Python 3.11）：安装依赖 → 复制前端 → 启动 uvicorn + nginx
-3. **运行**：HF 提供 16GB 内存 / 2vCPU，监听 7860 端口，分配免费子域名
-
----
-
-## 三、用到的服务和账号密码
-
-### 1. Hugging Face（部署平台）
-
-| 项目 | 值 |
-|---|---|
-| 网址 | https://huggingface.co |
-| 用户名 | `qq1833411196` |
-| 邮箱 | `wy1833411196@gmail.com` |
-| 密码 | `Aa11235617.` |
-| Access Token | `<YOUR_HF_TOKEN>` （已配置在 git remote URL 中） |
-| Space 名称 | `qq1833411196/jianli` |
-| 线上地址 | https://qq1833411196-jianli.hf.space |
-
-### 2. Supabase（数据库 + 存储）
-
-| 项目 | 值 |
-|---|---|
-| 网址 | https://supabase.com/dashboard |
-| 邮箱 | `wy1833411196@gmail.com` |
-| 密码 | `Aa11235617.` |
-| Project URL | `https://ivlrszbwekymbydhnlre.supabase.co` |
-| Anon Key | `sb_publishable_F9pB31N8oaKs-um1TeA86g_MlBROxUa` |
-| Storage Bucket | `resume`（公开） |
-| 简历文件 | `wang-tianyang-resume.pdf` |
-
-### 3. MiniMax（AI 模型）
-
-| 项目 | 值 |
-|---|---|
-| 网址 | https://platform.minimaxi.com |
-| API Base | `https://api.minimaxi.com/v1` |
-| API Key | `sk-cp-w1NhrE_uyPwNBOA5kBwC8SvypRMplyYExGRJrQlO9PlV7gXfE12HfWYW8ubb_KYCieeYU2mNAHeU6RXnPigWjLvYsqBMPZuZyP3YKNSDxDcv9neK4hpuwpw` |
-| Chat 模型 | `MiniMax-M3` |
-| Embedding 模型 | `embo-01`（1536 维） |
-
-### 4. 环境变量（backend/.env）
+## 四、部署流程
 
 ```bash
-SUPABASE_URL=https://ivlrszbwekymbydhnlre.supabase.co
-SUPABASE_KEY=sb_publishable_F9pB31N8oaKs-um1TeA86g_MlBROxUa
-MINIMAX_API_KEY=sk-cp-w1NhrE_uyPwNBOA5kBwC8SvypRMplyYExGRJrQlO9PlV7gXfE12HfWYW8ubb_KYCieeYU2mNAHeU6RXnPigWjLvYsqBMPZuZyP3YKNSDxDcv9neK4hpuwpw
-MINIMAX_API_BASE=https://api.minimaxi.com/v1
-MINIMAX_CHAT_MODEL=MiniMax-M3
-MINIMAX_EMBED_MODEL=embo-01
-ADMIN_TOKEN=change-me-to-random-string
+npm install
+npm run build
+# 把 dist/* 拷贝到仓库根目录（除 resume.pdf 和 avatar.png 等已经存在的 public 文件）
+cp dist/index.html ./index.html
+cp -r dist/assets/ ./assets/
+rm -rf dist
+
+git add -A
+git commit -m "deploy: <说明>"
+git push origin main     # GitHub
+git push hf main         # HuggingFace Space
 ```
 
-**注意**：HF Space 线上环境变量通过 Settings → Variables and secrets 配置，不通过 `.env` 文件。
+HF Static SDK 会自动 serve 仓库根目录的所有文件。SPA 路由通过 `/index.html` fallback。
 
 ---
 
-## 四、核心功能
+## 五、Git 远程
 
-### 1. 个人简历展示
-- PDF.js 渲染简历为可滚动图片
-- 支持移动端适配
-
-### 2. AI 对话助手
-- 基于 RAG（检索增强生成）
-- 向量化知识库（Supabase pgvector）
-- 流式响应（SSE）
-
-### 3. 作品/Case Study 展示
-- 6 个页面路由
-- 响应式设计
-
----
-
-## 五、本地开发
-
-```bash
-# 安装依赖
-pnpm install
-
-# 启动前端（http://localhost:5173）
-pnpm dev
-
-# 启动后端（新终端，http://localhost:8000）
-cd backend && source .venv/bin/activate
-pip install -r requirements.txt
-uvicorn backend.main:app --reload --port 8000
-
-# RAG 知识库入库
-curl -X POST -H "X-Admin-Token: change-me-to-random-string" http://localhost:8000/api/admin/reindex
-```
-
----
-
-## 六、更新简历
-
-1. 上传新 PDF 到 Supabase Storage：
-   - 访问 https://supabase.com/dashboard → Storage → `resume` bucket
-   - 上传文件（英文命名）
-
-2. 触发 RAG 重建：
-   ```bash
-   curl -X POST -H "X-Admin-Token: change-me-to-random-string" https://qq1833411196-jianli.hf.space/api/admin/reindex
-   ```
-
----
-
-### 5. GitHub（代码托管）
-
-| 项目 | 值 |
+| Remote | URL |
 |---|---|
-| 网址 | https://github.com |
-| 用户名 | `RioWang5617` |
-| 邮箱 | `1833411196@qq.com` |
-| 密码 | `aa11235617` |
-| 仓库地址 | https://github.com/RioWang5617/pm-portfolio |
-| Classic Token | `<YOUR_GITHUB_TOKEN>`（已配置在 git remote URL 中，无过期，repo 权限） |
+| origin | https://github.com/RioWang5617/pm-portfolio.git |
+| hf | https://huggingface.co/spaces/qq1833411196/jianli |
 
 ---
 
-**文档更新时间**：2026-07-09
+**文档更新时间**：2026-07-14
 **作者**：王天阳

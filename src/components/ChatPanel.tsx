@@ -59,12 +59,12 @@ export function ChatPanel({ open, onClose }: Props) {
 
   return (
     <div
-      className="fixed inset-4 md:inset-auto md:bottom-24 md:right-6 z-50 md:w-[400px] md:max-w-[calc(100vw-2rem)] md:h-[600px] md:max-h-[calc(100vh-8rem)] bg-cream border border-line rounded-2xl shadow-2xl flex flex-col overflow-hidden"
+      className="fixed inset-4 md:inset-auto md:bottom-24 md:right-6 z-50 md:w-[400px] md:max-w-[calc(100vw-2rem)] md:h-[600px] md:max-h-[calc(100vh-8rem)] bg-page border border-line rounded-2xl shadow-2xl flex flex-col overflow-hidden"
       role="dialog"
       aria-label="跟我聊"
     >
       {/* Header */}
-      <div className="flex items-center justify-between px-5 py-4 border-b border-line">
+      <div className="flex items-center justify-between px-5 py-4 border-b border-line bg-page">
         <div className="flex items-center gap-3">
           <img
             src="/avatar.png"

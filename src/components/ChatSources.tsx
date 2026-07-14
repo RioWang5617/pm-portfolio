@@ -15,7 +15,7 @@ export function ChatSources({ sources }: Props) {
       {sources.map((s, i) => (
         <div
           key={i}
-          className="border-l-2 border-line pl-3 py-1 bg-cream/50 rounded"
+          className="border-l-2 border-line pl-3 py-1 bg-page/50 rounded"
         >
           <div className="text-muted">
             [{i + 1}] <span className="font-mono">{s.title}</span>

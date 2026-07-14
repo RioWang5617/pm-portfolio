@@ -7,6 +7,7 @@ const caseData: CaseStudyData = {
   description: '自动爬取多源竞品数据并生成可视化雷达图，帮助产品团队快速发现差异与机会。',
   year: '2025',
   stack: ['Python', 'Claude', 'Chart.js'],
+  coverImage: '/images/prototypes/competitor-radar-01-search.png',
 
   coverQuote: '「竞品分析的价值不在"收集信息"，在"发现差异"。」',
 

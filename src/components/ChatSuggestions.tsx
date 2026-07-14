@@ -19,7 +19,7 @@ export function ChatSuggestions({ onSelect }: Props) {
         <button
           key={q}
           onClick={() => onSelect(q)}
-          className="block w-full text-left px-4 py-3 bg-line/30 hover:bg-line/60 rounded-lg text-[0.9rem] text-ink transition-colors"
+          className="block w-full text-left px-4 py-3 bg-card-bg hover:bg-card-border/40 border border-line/40 rounded-lg text-[0.9rem] text-ink transition-colors"
         >
           {q}
         </button>

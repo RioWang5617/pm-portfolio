@@ -7,6 +7,7 @@ const caseData: CaseStudyData = {
   description: '通过手机号授权实现多渠道快递信息自动聚合，用户不用记单号就能看到所有在途包裹状态。',
   year: '2025',
   stack: ['Python', '快递100 API', '微信小程序'],
+  coverImage: '/images/prototypes/express-master-01-auth.png',
 
   /* ─── COVER ─── */
   coverQuote:

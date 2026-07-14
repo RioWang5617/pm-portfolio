@@ -7,6 +7,7 @@ const data: CaseStudyData = {
   description: '基于微信聊天记录构建个性化对话模型，让你在虚拟空间里保留一种“说话方式”并与它重新对话。',
   year: '2025',
   stack: ['Python', 'Claude', '微信导出'],
+  coverImage: '/images/prototypes/ghost-clone-01-chat-import.png',
   coverQuote: '「有些人的聊天记录，不是用来存档的，是用来"再活一次"的。」',
 
   motivation: {

@@ -7,6 +7,7 @@ const caseData: CaseStudyData = {
   description: '构建从爬虫采集到多端推送的自动化监控体系，让信息主动找到人而不是人去刷数据。',
   year: '2025',
   stack: ['Python', 'Webhook', '飞书', 'Outlook'],
+  coverImage: '/images/prototypes/crawler-monitor-01-tasks.png',
 
   coverQuote:
     '「工具的价值不在"功能多"，在"时机对"——凌晨推送的资讯没人看，早 9 点半发到飞书群，打开率从 12% 升到 67%。」',
